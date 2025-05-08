@@ -1,0 +1,1738 @@
+<!-- 	
+Aplicación desarrollada para el apoyo didáctico en clases para los profesores.
+-->
+<!-- 
+EL trabajo lo he dividido en 6 módulos en este html, uno para cada juego. De momento los juegos son practicamente iguales, pero he decido repetir todo el código de cada parte (más líneas de código), por si acaso en un futuro se decide cambiar cada juego y hacerlo de forma separada, para que ya esté "estructurado", y no haya que rehacerlo desde 0.
+El CSS he trabajado con nombres de clases enteramente, intentando que cada nombre aporte X cambios a la función en concreto, pero distintas clases pueden verse superpuestas y eliminar el color de una parte puede tocar también su posición. Podríase trabajar en ello para una mejor estructuración del propio CSS.
+El JS también va separado por módulos con funciones nuevamente repetidas por módulos, por si se desea cambiar el funcionamiento de cada juego. 
+
+El programa está ajustado para ser utilizado en Mozilla firefox y Chrome. Además de estar ajustado para pantallas de formato 16:9 y 16:10 (lo estándar). Para otros formatos puede haber desajustes.
+
+Terminado el 25/06/2019. (Versión Final 1.0).
+--->
+<!DOCTYPE html>
+<html lang="es">
+<head>
+	<title>EduParty</title>
+
+	<meta charset="UTF-8"/>
+	<meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+	<meta name="title" content="Eduparty.org"/>
+	<meta name="author" content="Ignacio Moll">
+	<meta name="description" content="Divertidos Juegos para usar en clase."/>
+
+	<!-- Jquerys necesarias-->
+	<script src="https://code.jquery.com/jquery-3.3.1.js" integrity="sha256-2Kok7MbOyxpgUVvAk/HJ2jigOSYS2auK4Pfzbm7uH60=" crossorigin="anonymous"></script>
+	
+	<!-- Js necesarios.-->
+	<script src="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/js/bootstrap.min.js" integrity="sha384-JjSmVgyd0p3pXB1rRibZUAYoIIy6OrQ6VrjIEaFf/nJGzIxFDsf4x0xIM+B07jRM" crossorigin="anonymous"></script>
+	<script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.7/umd/popper.min.js" integrity="sha384-UO2eT0CpHqdSJQ6hJty5KVphtPhzWj9WO1clHTMGa3JDZwrnQq4sF86dIHNDz0W1" crossorigin="anonymous"></script>
+	<script type="text/javascript" src="./js/js.js"></script>
+	
+	<!-- Los CSS-->
+	<link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css" integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T" crossorigin="anonymous">
+	<link rel="stylesheet" type="text/css" href="https://cdnjs.cloudflare.com/ajax/libs/animate.css/3.7.0/animate.min.css"> 
+	<link rel="stylesheet" type="text/css" href="./css/css.css">
+	
+	<!-- Fuentes necesarias-->
+	<link href="https://fonts.googleapis.com/css?family=Raleway:400,500i" rel="stylesheet">
+	<link href="https://fonts.googleapis.com/css?family=Caveat" rel="stylesheet">
+	<link href="https://fonts.googleapis.com/css?family=Permanent+Marker" rel="stylesheet">
+	<link href="https://fonts.googleapis.com/css?family=Righteous&display=swap" rel="stylesheet">
+	<link href="https://fonts.googleapis.com/css?family=Pacifico&display=swap" rel="stylesheet">
+</head>
+<body>
+	<div class="MenuPrincipal fondoQuiz overflow1" id="MenuPrincipal">
+		<div class="row">
+			<div class="col-2"></div>
+			<div class="col-8"><img src="./media/titulo.png" class="ImagenTitulo grow"></div>
+			<div class="col-2 " onclick="mostrarAyudaMP();">
+				<div class="grow animated fadeIn slow">
+					<img src="./media/AyudaMenu.png" class="ImagenAyudaMenu" id="ImagenAyudaMP">
+					<p class="letraImagenAyudaMP">Ayuda</p>
+				</div>
+				
+			</div>
+		</div>
+		<div class="row marginBotonMP animated fadeInLeft">
+			<div class="col-5 Boton1 grow colorBotonQuiz" id="botonQuizMP" onclick="Quiz();">
+				<p class="letraBotonMI">Quiz</p>
+			</div>
+
+			<div class="col-2"></div>
+			<div class="col-5 descripcionMP colorDCBotonQuiz animated slideInRight" id="DescQuizMP"><p class="letraDCMP">Preguntas por equipos<br> ¿Quién será el primero?</p>
+			</div>
+		</div>
+		<div class="row marginBotonMP animated animationDelay1 fadeInLeft">
+			<div class="col-5 Boton1 grow colorBotonTabu" id="botonTabuMP" onclick="Tabu();">
+				<p class="letraBotonMI">Tabú</p>
+			</div>
+
+			<div class="col-2"></div>
+			<div class="col-5 descripcionMP colorDCBotonTabu animated slideInRight" id="DescTabuMP"><p class="letraDCMP">¡Adivina la palabra escogida!</p></div>
+		</div>
+		<div class="row marginBotonMP animated animationDelay2 fadeInLeft">
+			<div class="col-5 Boton1 grow colorBotonMimica" id="botonMimicaMP" onclick="Mimica();">
+				<p class="letraBotonMI">Mímica</p>
+			</div>
+
+			<div class="col-2"></div>
+			<div class="col-5 descripcionMP colorDCBotonMimica animated slideInRight" id="DescMimicaMP"><p class="letraDCMP">Levántate, muévete y exprésate como nadie<br>¿Serás capaz de hacerte entender?</p></div>
+		</div>
+		<div class="row marginBotonMP animated animationDelay3 fadeInLeft">
+			<div class="col-5 Boton1 grow colorBotonDibujo" id="botonDibujoMP" onclick="Dibujo();">
+				<p class="letraBotonMI">Dibujo</p>
+			</div>
+
+			<div class="col-2"></div>
+			<div class="col-5 descripcionMP colorDCBotonDibujo animated slideInRight" id="DescDibujoMP"><p class="letraDCMP">¿Estás preparado para dibujar? <br>¡Coge algo para pintar y adelante!</p></div>
+		</div>
+		<div class="row marginBotonMP animated animationDelay4 fadeInLeft">
+			<div class="col-5 Boton1 grow colorBotonParty" id="botonPartyMP" onclick="Party();">
+				<p class="letraBotonMI">Party</p>
+			</div>
+
+			<div class="col-2"></div>
+			<div class="col-5 descripcionMP colorDCBotonParty animated slideInRight" id="DescPartyMP"><p class="letraDCMP">Divertidas pruebas en equipos<br> ¡Llega primero a la meta!</p></div>
+		</div>
+		<div class="row marginBotonMP animated animationDelay5 fadeInLeft">
+			<div class="col-5 Boton1 grow colorBotonEP" id="botonEPMP" onclick="EP();">
+				<p class="letraBotonMI">Elevators Pitch</p>
+			</div>
+
+			<div class="col-2"></div>
+			<div class="col-5 descripcionMP colorDCBotonEP animated slideInRight" id="DescEPMP"><p class="letraDCMP">¿Conseguirás completar tu objetivo<br> antes de llegar al último piso?</p></div>
+		</div>
+	</div> <!-- Fin del menu Principal-->
+	<!--AYUDA DEL MENU PRINCIPAL-->
+	<div id="AyudaMP" class="pantallaAyudaMP displaynone overflow1">
+		<div class="row"> 
+			<div class="col-12">
+				<h1 class="margin3vw letraTiempo">Ayudas y Consejos</h1>
+				<p class="letraAyudaTexto"> 
+					- ¡Ayuda en camino!<br>
+					- Descripción 1<br> 
+					- Descripción 2<br> 
+					- Descripción 3<br> 
+					- Descripción 4<br> 
+					- Descripción 5<br> 
+					- Descripción 6<br> 
+				</p>
+			</div>
+		</div>	
+	</div>
+	<!--FIN DE AYUDA DEL MENU PRINCIPAL-->
+	<!--AYUDA DEL QUIZ-->
+	<div id="AyudaQuiz" class="pantallaAyudaMP displaynone overflow1">
+		<div class="row"> 
+			<div class="col-12">
+				<h1 class="margin3vw letraTiempo">Ayudas y Consejos Quiz</h1>
+				<p class="letraAyudaTexto"> 
+					- ¡Ayuda en camino!<br>
+					- Descripción 1<br> 
+					- Descripción 2<br> 
+					- Descripción 3<br> 
+					- Descripción 4<br> 
+					- Descripción 5<br> 
+					- Descripción 6<br> 
+				</p>
+			</div>
+		</div>	
+	</div>
+	<!--FIN DE AYUDA DEL MENU PRINCIPAL-->
+	<!--AJUSTES DEL QUIZ-->
+	<div id="PantallaQuizSettings" class="displaynone fondoQuiz overflow1">
+		<img src="./media/volver.png" class="posicionImagenVolverMenu grow" onclick="volverMP();">
+		<img src="./media/AyudaMenu.png" class="posicionImagenAyuda grow animated fadeIn slow" id="ImagenAyudaQuiz" onclick="mostrarAyudaQuiz();">
+		<p class="letraImagenAyudaMP posLetraAyuda animated fadeIn slow">Ayuda</p>
+		<div class="row">
+			<div class="col-12">
+				<h1 class="TituloQuiz animated fadeIn">Quiz</h1>
+			</div>
+			<div class="col-1"></div>
+			<div class="col-4 seleccionItemsQuiz marginTop2 tooltip1">
+				<label for="numEquiposQuiz" class="letraSelects grow">Nº Equipos</label>
+			    <select id="numEquiposQuiz" class="form-control tamanyoSelect" required> 
+			        <option>1</option>
+			        <option>2</option>
+			        <option>3</option>
+			        <option selected>4</option>
+			        <option>5</option>
+			        <option>6</option>
+			        <option>7</option>
+			        <option>8</option>
+			        <option>9</option>
+			        <option>10</option>
+			    </select>
+			    <span class="tooltiptext1">Selecciona el número de equipos que van a participar</span>
+			</div>	
+			<div class="col-2"></div>
+			<div class="col-4 seleccionItemsQuiz marginTop2 tooltip1">
+				<div class="col-12"><label for="TiempoQuiz" class="letraSelects grow">Duración Pregunta</label></div>
+			    <div class="col-12">
+			    	<select id="TiempoQuizMin" class="form-control tamanyoSelect displayInlineblock" required> 
+				        <option selected>0</option>
+				        <option>1</option>
+				        <option>2</option>
+				        <option>3</option>
+				    </select>
+				    <strong>:</strong>
+				    <select id="TiempoQuizSec" class="form-control tamanyoSelect displayInlineblock" required> 
+				        <option>00</option>
+				        <option>10</option>
+				        <option>20</option>
+				        <option selected>30</option>
+				        <option>40</option>
+				        <option>50</option>
+				    </select>
+			   	</div>
+			   	<div class="col-12 paddingTop1">
+			   		<p>
+			   			(Min : Seg)		
+			   		</p>
+			   	</div>
+				<span class="tooltiptext1">Selecciona el tiempo límite de cada pregunta</span>
+			</div>
+			<div class="col-1"></div>
+			<!--Siguiente fila-->
+			<div class="col-2"></div>
+			<div class="col-8 seleccionItemsQuiz marginTop1 padding1 AjusteBorderRadius1" >
+				<div class="col-3 displayInlineblock sinpadding paddingTop10">
+					<img src="./media/error.png" class="ImagenDCPQ animated fadeIn slow"><p class="letraTexto1">0 Puntos<br>Fallo</p>
+				</div>
+				<div class="col-3 displayInlineblock sinpadding paddingTop10">
+					<img src="./media/ok.png" class="ImagenDCPQ animated fadeIn animationDelay5"><p class="letraTexto1">+10 Puntos<br>¡Casi!</p>
+				</div>
+				<div class="col-3 displayInlineblock sinpadding paddingTop10">
+					<img src="./media/tick.png" class="ImagenDCPQ animated fadeIn animationDelay6"><p class="letraTexto1">+20 Puntos<br>Acierto	</p>
+				</div>	
+			</div>
+			<div class="col-2"></div>
+		</div>
+		<div class="BotonEmpezar grow" onclick="PrePreguntaQuiz();">
+			<p class="letraBotonEmpezar animated pulse slower infinite">¡Empezar!</p>
+		</div>
+	</div>
+	<!--FIN DE AJUSTES DEL QUIZ-->
+	<!--PANTALLA DEL QUIZ-->	
+	<div id="PantallaQuiz" class="displaynone fondoQuiz overflow1">
+		<div class="pantallaNegro cursorPointer" id="pantallaNegroQuiz" onclick="hidePantallaNegroQuiz();">
+			<p class="textoPantallaNegro1" id="textoTurnoEquipoPNegraQuiz">Nunca apareceré</p>
+			<p class="textoPantallaNegro3">¡Haz ahora tu pregunta!</p>
+			<p class="textoPantallaNegro2 animated pulse slower infinite">Click para empezar</p>
+		</div>
+		<div class="BotonFinalizarJuego fondoRojo1 grow" id="BotonFinalizarQuiz" onclick="FinalizarJuego('Quiz');"><p class="letraSelectsPartyTitulos">Acabar Juego</p></div>	
+		<img src="./media/volver.png" class="posicionImagenVolverMenu grow" onclick="volverMP();">
+		<div class="row sinmargin">
+			<div class="col-12">
+				<h1 class="TituloQuiz animated fadeIn">Quiz</h1>
+			</div>
+			<!--Siguiente fila-->
+			<div class="col-3"></div>
+			<div class="col-6 marginVHEnorme tooltip1"><p class="tooltiptext2 visible animated pulse slower infinite letraTexto1" id="textoPuntuarRespuesta">¡Puntúa la respuesta!</p></div>
+			<div class="col-3"></div>
+			<!--Siguiente fila-->
+			<div class="col-3"></div>
+			<div class="col-2">	
+				<div class="fondoRojo1 anchoCorto1 margin25 padding10 grow cursorPointer" id="ImagenDCPQFallo" onclick="respuestaQuiz(0);">
+					<img src="./media/error.png" class="ImagenDCPQ"><p class="paddingTop10 letraTexto1">Fallo</p>
+				</div>
+			</div>
+			<div class="col-2">	
+				<div class="fondoAmarillo1 anchoCorto1 margin25 padding10 grow cursorPointer" id="ImagenDCPQCasi" onclick="respuestaQuiz(10);">
+					<img src="./media/ok.png" class="ImagenDCPQ"><p class="paddingTop10 letraTexto1">¡Casi!</p>
+				</div>
+			</div>
+			<div class="col-2">	
+				<div class="fondoVerde2 anchoCorto1 margin25 padding10 grow cursorPointer" id="ImagenDCPQAcierto" onclick="respuestaQuiz(20);">
+					<img src="./media/tick.png" class="ImagenDCPQ"><p class="paddingTop10 letraTexto1">Acierto</p>
+				</div>
+			</div>
+			<div class="col-3"></div>
+			<!--Siguiente fila-->
+			<div class="col-3"></div>
+			<div class="col-6 marginVHGrande">
+				<div class="tiempoContador" id="tiempoContador">60</div>
+				<div class="progress">
+                	<div class="progress-bar" id="barraProgreso"></div>
+            	</div>
+			</div>
+			<div class="col-3">
+				<div class="cursorPointer" ><img src="./media/pause.png" onclick="togglePlayPause('Quiz');" class="imagenPlayPause" id="imagenPausaPlayQuiz"></div>
+			</div>
+			<!--Siguiente fila-->
+			<div class="col-5"></div>
+			<div class="col-2 marginVHMedGra visibilityHidden" id="textoTimeUp"><p class="fondoRojo2 letraTiempo animated pulse slow infinite overflow1">¡Tiempo!</p></div>
+			<div class="col-5"></div>
+			<!--Siguiente fila-->
+			<div class="col-2 BotonRepetir fondoAmarillo2 marginVHGrande grow" onclick="RepetirQuiz();"><p class="letraBotonEmpezar">Repetir!</p></div>
+			<div class="col-3"></div>
+			<div class="col-2 marginVHGrande posEquipotexto"><p class="letraBotonEmpezar" id="textoTurnoEquipo">Equipo 3</p></div>
+			<div class="col-3"></div>
+			<div class="col-2 BotonContinuar marginVHGrande fondoGris2" id="botonContinuar" onclick="ContinuarQuiz();"><p class="letraBotonEmpezar">Continuar</p></div>
+		</div>
+		<!--Fin de las filas fondoVerde3-->
+	</div>
+	<!--Pantalla de puntuaciones-->
+	<div id="PantallaPuntuaciones" class="displaynone PantallaPuntuaciones fondoQuiz overflow1">
+		<div class="col-12">
+			<h1 class="TituloQuiz animated fadeIn">Quiz</h1>
+		</div>
+		<div class="BloqueTransparente1" onclick="PasarTurno();"></div>
+		<div class="BloqueTransparente2" onclick="PasarTurno();"></div>
+		<div class="BotonFinalizarJuego fondoRojo1 grow" id="BotonFinalizarQuiz" onclick="FinalizarJuego('Quiz');"><p class="letraSelectsPartyTitulos">Acabar Juego</p></div>
+		<div class="row centrarElemsEnDiv height80">
+			<!--Siguiente fila
+			<div class="col-12 marginVHGrande">
+			</div>-->
+			<div id="verEquipo1" class="row marginVHGrande">
+				<div class="col-3"><p class="nombreEquipos fondoEquipos centrarElemsEnDiv2">Equipo 1</p></div>
+				<div class="col-7 AjusteMarginLeft">
+					<div class="progress2">
+	            		<div class="progress-bar2 background1" id="barraPuntuacionE1"></div>
+	            	</div>
+	            </div>
+	            <div class="col-2 sinpadding"><p class="valorPuntuacion centrarElemsEnDiv2" id="valorPuntuacionE1">0</p></div>
+	        </div>
+            <div id="verEquipo2" class="row">
+	            <div class="col-3 marginVHPequenyo"><p class="nombreEquipos fondoEquipos centrarElemsEnDiv2">Equipo 2</p></div>
+				<div class="col-7 marginVHPequenyo AjusteMarginLeft">
+					<div class="progress2">
+	            		<div class="progress-bar2 background2" id="barraPuntuacionE2"></div>
+	            	</div>
+				</div>
+				<div class="col-2 marginVHPequenyo sinpadding"><p class="valorPuntuacion centrarElemsEnDiv2" id="valorPuntuacionE2">0</p></div>
+			</div>
+			<div id="verEquipo3" class="row">
+				<div class="col-3 marginVHPequenyo"><p class="nombreEquipos fondoEquipos centrarElemsEnDiv2">Equipo 3</p></div>
+				<div class="col-7 marginVHPequenyo AjusteMarginLeft">
+					<div class="progress2">
+	            		<div class="progress-bar2 background3" id="barraPuntuacionE3"></div>
+	            	</div>
+				</div>
+				<div class="col-2 marginVHPequenyo sinpadding"><p class="valorPuntuacion sinpadding centrarElemsEnDiv2" id="valorPuntuacionE3">0</p></div>
+			</div>
+			<div id="verEquipo4" class="row">
+				<div class="col-3 marginVHPequenyo"><p class="nombreEquipos fondoEquipos centrarElemsEnDiv2">Equipo 4</p></div>
+				<div class="col-7 marginVHPequenyo AjusteMarginLeft">
+					<div class="progress2">
+	            		<div class="progress-bar2 background4" id="barraPuntuacionE4"></div>
+	            	</div>
+				</div>
+				<div class="col-2 marginVHPequenyo sinpadding"><p class="valorPuntuacion centrarElemsEnDiv2" id="valorPuntuacionE4">0</p></div>
+			</div>
+			<div id="verEquipo5" class="row">
+				<div class="col-3 marginVHPequenyo"><p class="nombreEquipos fondoEquipos centrarElemsEnDiv2">Equipo 5</p></div>
+				<div class="col-7 marginVHPequenyo AjusteMarginLeft">
+					<div class="progress2">
+	            		<div class="progress-bar2 background5" id="barraPuntuacionE5"></div>
+	            	</div>
+				</div>
+				<div class="col-2 marginVHPequenyo sinpadding"><p class="valorPuntuacion centrarElemsEnDiv2" id="valorPuntuacionE5">0</p></div>
+			</div>
+			<div id="verEquipo6" class="row">
+				<div class="col-3 marginVHPequenyo"><p class="nombreEquipos fondoEquipos centrarElemsEnDiv2">Equipo 6</p></div>
+				<div class="col-7 marginVHPequenyo AjusteMarginLeft">
+					<div class="progress2">
+	            		<div class="progress-bar2 background6" id="barraPuntuacionE6"></div>
+	            	</div>
+				</div>
+				<div class="col-2 marginVHPequenyo sinpadding"><p class="valorPuntuacion centrarElemsEnDiv2" id="valorPuntuacionE6">0</p></div>
+			</div>
+			<div id="verEquipo7" class="row">
+				<div class="col-3 marginVHPequenyo"><p class="nombreEquipos fondoEquipos centrarElemsEnDiv2">Equipo 7</p></div>
+				<div class="col-7 marginVHPequenyo AjusteMarginLeft">
+					<div class="progress2">
+	            		<div class="progress-bar2 background7" id="barraPuntuacionE7"></div>
+	            	</div>
+				</div>
+				<div class="col-2 marginVHPequenyo sinpadding"><p class="valorPuntuacion centrarElemsEnDiv2" id="valorPuntuacionE7">0</p></div>
+			</div>
+			<div id="verEquipo8" class="row">
+				<div class="col-3 marginVHPequenyo"><p class="nombreEquipos fondoEquipos centrarElemsEnDiv2">Equipo 8</p></div>
+				<div class="col-7 marginVHPequenyo AjusteMarginLeft">
+					<div class="progress2">
+	            		<div class="progress-bar2 background8" id="barraPuntuacionE8"></div>
+	            	</div>
+				</div>
+				<div class="col-2 marginVHPequenyo sinpadding"><p class="valorPuntuacion centrarElemsEnDiv2" id="valorPuntuacionE8">0</p></div>
+			</div>
+			<div id="verEquipo9" class="row">
+				<div class="col-3 marginVHPequenyo"><p class="nombreEquipos fondoEquipos centrarElemsEnDiv2">Equipo 9</p></div>
+				<div class="col-7 marginVHPequenyo AjusteMarginLeft">
+					<div class="progress2">
+	            		<div class="progress-bar2 background9" id="barraPuntuacionE9"></div>
+	            	</div>
+				</div>
+				<div class="col-2 marginVHPequenyo sinpadding"><p class="valorPuntuacion centrarElemsEnDiv2" id="valorPuntuacionE9">0</p></div>
+			</div>
+			<div id="verEquipo10" class="row">
+				<div class="col-3 marginVHPequenyo"><p class="nombreEquipos fondoEquipos centrarElemsEnDiv2">Equipo 10</p></div>
+				<div class="col-7 marginVHPequenyo AjusteMarginLeft">
+					<div class="progress2">
+	            		<div class="progress-bar2 background10" id="barraPuntuacionE10"></div>
+	            	</div>
+				</div>
+				<div class="col-2 marginVHPequenyo sinpadding"><p class="valorPuntuacion centrarElemsEnDiv2" id="valorPuntuacionE10">0</p></div>
+			</div>
+			<div class="col-12 marginVHMedio overflow1"><p class="letraBotonEmpezar animated pulse slower infinite">¡Haz click para continuar!</p></div>
+		</div>
+	</div>
+	<!--FIN de pantalla de puntuaciones-->
+	<!-- FIN DE HTML DE QUIZ-->
+	<!--AYUDA DEL QUIZ-->
+	<div id="AyudaTabu" class="pantallaAyudaMP displaynone overflow1">
+		<div class="row"> 
+			<div class="col-12">
+				<h1 class="margin3vw letraTiempo">Ayudas y Consejos Tabu</h1>
+				<p class="letraAyudaTexto"> 
+					- ¡Ayuda en camino!<br>
+					- Descripción 1 gcfjhjcgkcgchc<br> 
+					- Descripción 2<br> 
+					- Descripción 3<br> 
+					- Descripción 4<br> 
+					- Descripción 5<br> 
+					- Descripción 6<br> 
+				</p>
+			</div>
+		</div>	
+	</div>
+	<!--FIN DE AYUDA DEL MENU PRINCIPAL-->
+	<!--AJUSTES DEL TABU-->
+	<div id="PantallaTabuSettings" class="displaynone overflow1 fondoTabu">
+		<img src="./media/volver.png" class="posicionImagenVolverMenu grow" onclick="volverMP();">
+		<img src="./media/AyudaMenu.png" class="posicionImagenAyuda grow" id="ImagenAyudaTabu" onclick="mostrarAyudaTabu();">
+		<p class="letraImagenAyudaMP posLetraAyuda">Ayuda</p>
+		<div class="row">
+			<div class="col-12">
+				<h1 class="TituloQuiz animated fadeIn">Tabú</h1>
+			</div>
+			<div class="col-1"></div>
+			<div class="col-4 seleccionItemsQuiz marginTop2 tooltip1">
+				<label for="numEquiposTabu" class="letraSelects grow">Nº Equipos</label>
+			    <select id="numEquiposTabu" class="form-control tamanyoSelect" required> 
+			        <option>1</option>
+			        <option>2</option>
+			        <option>3</option>
+			        <option selected>4</option>
+			        <option>5</option>
+			        <option>6</option>
+			        <option>7</option>
+			        <option>8</option>
+			        <option>9</option>
+			        <option>10</option>
+			    </select>
+			    <span class="tooltiptext1">Selecciona el número de equipos que van a participar</span>
+			</div>	
+			<div class="col-2"></div>
+			<div class="col-4 seleccionItemsQuiz marginTop2 tooltip1">
+				<div class="col-12"><label for="TiempoQuiz" class="letraSelects grow">Duración Pregunta</label></div>
+			    <div class="col-12">
+			    	<select id="TiempoQuizMinTabu" class="form-control tamanyoSelect displayInlineblock" required> 
+				        <option selected>0</option>
+				        <option>1</option>
+				        <option>2</option>
+				        <option>3</option>
+				    </select>
+				    <strong>:</strong>
+				    <select id="TiempoQuizSecTabu" class="form-control tamanyoSelect displayInlineblock" required> 
+				        <option>00</option>
+				        <option>10</option>
+				        <option>20</option>
+				        <option>30</option>
+				        <option selected>40</option>
+				        <option>50</option>
+				    </select>
+			   	</div>
+			   	<div class="col-12 paddingTop1">
+			   		<p>
+			   			(Min : Seg)		
+			   		</p>
+			   	</div>
+				<span class="tooltiptext1">Selecciona el tiempo límite de cada pregunta</span>
+			</div>
+			<div class="col-1"></div>
+			<!--Siguiente fila-->
+			<div class="col-2"></div>
+			<div class="col-8 seleccionItemsQuiz marginTop1 padding1 AjusteBorderRadius1" >
+				<div class="col-3 displayInlineblock sinpadding paddingTop10">
+					<img src="./media/error.png" class="ImagenDCPQ animated fadeIn slow"><p class="letraTexto1">0 Puntos<br>Fallo</p>
+				</div>
+				<div class="col-3 displayInlineblock sinpadding paddingTop10">
+					<img src="./media/ok.png" class="ImagenDCPQ animated fadeIn animationDelay5"><p class="letraTexto1">+10 Puntos<br>¡Casi!</p>
+				</div>
+				<div class="col-3 displayInlineblock sinpadding paddingTop10">
+					<img src="./media/tick.png" class="ImagenDCPQ animated fadeIn animationDelay6"><p class="letraTexto1">+20 Puntos<br>Acierto	</p>
+				</div>
+			</div>
+			<div class="col-2"></div>
+		</div>
+		<div class="BotonEmpezar grow" onclick="PrePreguntaTabu();">
+			<p class="letraBotonEmpezar animated pulse slower infinite">¡Empezar!</p>
+		</div>
+	</div>
+	<!--FIN DE AJUSTES DEL TABU-->
+	<!--PANTALLA DEL TABU-->	
+	<div id="PantallaTabu" class="displaynone overflow1 fondoTabu">
+		<div class="pantallaNegro cursorPointer" id="pantallaNegroTabu" onclick="hidePantallaNegroTabu();">
+			<p class="textoPantallaNegro1" id="textoTurnoEquipoPNegraTabu">Nunca apareceré</p>
+			<p class="textoPantallaNegro3">¡Mira ahora tu palabra!</p>
+			<p class="textoPantallaNegro2 animated pulse slower infinite">Click para empezar</p>
+		</div>	
+		<div class="BotonFinalizarJuego fondoRojo1 grow" id="BotonFinalizarTabu" onclick="FinalizarJuego('Tabu');"><p class="letraSelectsPartyTitulos">Acabar Juego</p></div>
+		<img src="./media/volver.png" class="posicionImagenVolverMenu grow" onclick="volverMP();">
+		<div class="row sinmargin">
+			<div class="col-12">
+				<h1 class="TituloQuiz animated fadeIn">Tabú</h1>
+			</div>
+			<!--Siguiente fila-->
+			<div class="col-3"></div>
+			<div class="col-6 marginVHEnorme tooltip1"><p class="tooltiptext2 visible animated pulse slower infinite letraTexto1" id="textoPuntuarRespuestaTabu">¡Puntúa la respuesta!</p></div>
+			<div class="col-3"></div>
+			<!--Siguiente fila-->
+			<div class="col-3"></div>
+			<div class="col-2">	
+				<div class="fondoRojo1 anchoCorto1 margin25 padding10 grow cursorPointer" id="ImagenDCPQFalloTabu" onclick="respuestaTabu(0);">
+					<img src="./media/error.png" class="ImagenDCPQ"><p class="paddingTop10 letraTexto1">Fallo</p>
+				</div>
+			</div>
+			<div class="col-2">	
+				<div class="fondoAmarillo1 anchoCorto1 margin25 padding10 grow cursorPointer" id="ImagenDCPQCasiTabu" onclick="respuestaTabu(10);">
+					<img src="./media/ok.png" class="ImagenDCPQ"><p class="paddingTop10 letraTexto1">¡Casi!</p>
+				</div>
+			</div>
+			<div class="col-2">	
+				<div class="fondoVerde2 anchoCorto1 margin25 padding10 grow cursorPointer" id="ImagenDCPQAciertoTabu" onclick="respuestaTabu(20);">
+					<img src="./media/tick.png" class="ImagenDCPQ"><p class="paddingTop10 letraTexto1">Acierto</p>
+				</div>
+			</div>
+			<div class="col-3"></div>
+			<!--Siguiente fila-->
+			<div class="col-3"></div>
+			<div class="col-6 marginVHGrande">
+				<div class="tiempoContador" id="tiempoContadorTabu">60</div>
+				<div class="progress">
+                	<div class="progress-bar" id="barraProgresoTabu"></div>
+            	</div>
+			</div>
+			<div class="col-3">
+				<div class="cursorPointer"><img src="./media/pause.png" onclick="togglePlayPause('Tabu');" class="imagenPlayPause" id="imagenPausaPlayTabu"></div>
+			</div>
+			<!--Siguiente fila-->
+			<div class="col-5"></div>
+			<div class="col-2 marginVHMedGra visibilityHidden" id="textoTimeUpTabu"><p class="fondoRojo2 letraTiempo animated pulse slow infinite overflow1">¡Tiempo!</p></div>
+			<div class="col-5"></div>
+			<!--Siguiente fila-->
+			<div class="col-2 BotonRepetir fondoAmarillo2 marginVHGrande grow" onclick="RepetirTabu();"><p class="letraBotonEmpezar">Repetir!</p></div>
+			<div class="col-3"></div>
+			<div class="col-2 marginVHGrande posEquipotexto"><p class="letraBotonEmpezar" id="textoTurnoEquipoTabu">Equipo 3</p></div>
+			<div class="col-3"></div>
+			<div class="col-2 BotonContinuar marginVHGrande fondoGris2" id="botonContinuarTabu" onclick="ContinuarTabu();"><p class="letraBotonEmpezar">Continuar</p></div>
+		</div>
+		<!--Fin de las filas fondoVerde3-->
+	</div>
+	<!--Pantalla de puntuaciones TABU-->
+	<div id="PantallaPuntuacionesTabu" class="displaynone overflow1 PantallaPuntuaciones fondoTabu">
+		<div class="col-12">
+			<h1 class="TituloQuiz animated fadeIn">Tabú</h1>
+		</div>
+		<div class="BloqueTransparente1" onclick="PasarTurnoTabu();"></div>
+		<div class="BloqueTransparente2" onclick="PasarTurnoTabu();"></div>
+		<div class="BotonFinalizarJuego fondoRojo1 grow" id="BotonFinalizarTabu" onclick="FinalizarJuego('Tabu');"><p class="letraSelectsPartyTitulos">Acabar Juego</p></div>
+		<div class="row centrarElemsEnDiv height80">
+			<!--Siguiente fila-->
+			<div id="verEquipoTabu1" class="row marginVHGrande">
+				<div class="col-3"><p class="nombreEquipos fondoEquipos centrarElemsEnDiv2">Equipo 1</p></div>
+				<div class="col-7 AjusteMarginLeft">
+					<div class="progress2">
+	            		<div class="progress-bar2 background1" id="barraPuntuacionETabu1"></div>
+	            	</div>
+	            </div>
+	            <div class="col-2 sinpadding"><p class="valorPuntuacion centrarElemsEnDiv2" id="valorPuntuacionETabu1">0</p></div>
+	        </div>
+            <div id="verEquipoTabu2" class="row">
+	            <div class="col-3 marginVHPequenyo"><p class="nombreEquipos fondoEquipos centrarElemsEnDiv2">Equipo 2</p></div>
+				<div class="col-7 marginVHPequenyo AjusteMarginLeft">
+					<div class="progress2">
+	            		<div class="progress-bar2 background2" id="barraPuntuacionETabu2"></div>
+	            	</div>
+				</div>
+				<div class="col-2 marginVHPequenyo sinpadding"><p class="valorPuntuacion centrarElemsEnDiv2" id="valorPuntuacionETabu2">0</p></div>
+			</div>
+			<div id="verEquipoTabu3" class="row">
+				<div class="col-3 marginVHPequenyo"><p class="nombreEquipos fondoEquipos centrarElemsEnDiv2">Equipo 3</p></div>
+				<div class="col-7 marginVHPequenyo AjusteMarginLeft">
+					<div class="progress2">
+	            		<div class="progress-bar2 background3" id="barraPuntuacionETabu3"></div>
+	            	</div>
+				</div>
+				<div class="col-2 marginVHPequenyo sinpadding"><p class="valorPuntuacion sinpadding centrarElemsEnDiv2" id="valorPuntuacionETabu3">0</p></div>
+			</div>
+			<div id="verEquipoTabu4" class="row">
+				<div class="col-3 marginVHPequenyo"><p class="nombreEquipos fondoEquipos centrarElemsEnDiv2">Equipo 4</p></div>
+				<div class="col-7 marginVHPequenyo AjusteMarginLeft">
+					<div class="progress2">
+	            		<div class="progress-bar2 background4" id="barraPuntuacionETabu4"></div>
+	            	</div>
+				</div>
+				<div class="col-2 marginVHPequenyo sinpadding"><p class="valorPuntuacion centrarElemsEnDiv2" id="valorPuntuacionETabu4">0</p></div>
+			</div>
+			<div id="verEquipoTabu5" class="row">
+				<div class="col-3 marginVHPequenyo"><p class="nombreEquipos fondoEquipos centrarElemsEnDiv2">Equipo 5</p></div>
+				<div class="col-7 marginVHPequenyo AjusteMarginLeft">
+					<div class="progress2">
+	            		<div class="progress-bar2 background5" id="barraPuntuacionETabu5"></div>
+	            	</div>
+				</div>
+				<div class="col-2 marginVHPequenyo sinpadding"><p class="valorPuntuacion centrarElemsEnDiv2" id="valorPuntuacionETabu5">0</p></div>
+			</div>
+			<div id="verEquipoTabu6" class="row">
+				<div class="col-3 marginVHPequenyo"><p class="nombreEquipos fondoEquipos centrarElemsEnDiv2">Equipo 6</p></div>
+				<div class="col-7 marginVHPequenyo AjusteMarginLeft">
+					<div class="progress2">
+	            		<div class="progress-bar2 background6" id="barraPuntuacionETabu6"></div>
+	            	</div>
+				</div>
+				<div class="col-2 marginVHPequenyo sinpadding"><p class="valorPuntuacion centrarElemsEnDiv2" id="valorPuntuacionETabu6">0</p></div>
+			</div>
+			<div id="verEquipoTabu7" class="row">
+				<div class="col-3 marginVHPequenyo"><p class="nombreEquipos fondoEquipos centrarElemsEnDiv2">Equipo 7</p></div>
+				<div class="col-7 marginVHPequenyo AjusteMarginLeft">
+					<div class="progress2">
+	            		<div class="progress-bar2 background7" id="barraPuntuacionETabu7"></div>
+	            	</div>
+				</div>
+				<div class="col-2 marginVHPequenyo sinpadding"><p class="valorPuntuacion centrarElemsEnDiv2" id="valorPuntuacionETabu7">0</p></div>
+			</div>
+			<div id="verEquipoTabu8" class="row">
+				<div class="col-3 marginVHPequenyo"><p class="nombreEquipos fondoEquipos centrarElemsEnDiv2">Equipo 8</p></div>
+				<div class="col-7 marginVHPequenyo AjusteMarginLeft">
+					<div class="progress2">
+	            		<div class="progress-bar2 background8" id="barraPuntuacionETabu8"></div>
+	            	</div>
+				</div>
+				<div class="col-2 marginVHPequenyo sinpadding"><p class="valorPuntuacion centrarElemsEnDiv2" id="valorPuntuacionETabu8">0</p></div>
+			</div>
+			<div id="verEquipoTabu9" class="row">
+				<div class="col-3 marginVHPequenyo"><p class="nombreEquipos fondoEquipos centrarElemsEnDiv2">Equipo 9</p></div>
+				<div class="col-7 marginVHPequenyo AjusteMarginLeft">
+					<div class="progress2">
+	            		<div class="progress-bar2 background9" id="barraPuntuacionETabu9"></div>
+	            	</div>
+				</div>
+				<div class="col-2 marginVHPequenyo sinpadding"><p class="valorPuntuacion centrarElemsEnDiv2" id="valorPuntuacionETabu9">0</p></div>
+			</div>
+			<div id="verEquipoTabu10" class="row">
+				<div class="col-3 marginVHPequenyo"><p class="nombreEquipos fondoEquipos centrarElemsEnDiv2">Equipo 10</p></div>
+				<div class="col-7 marginVHPequenyo AjusteMarginLeft">
+					<div class="progress2">
+	            		<div class="progress-bar2 background10" id="barraPuntuacionETabu10"></div>
+	            	</div>
+				</div>
+				<div class="col-2 marginVHPequenyo sinpadding"><p class="valorPuntuacion centrarElemsEnDiv2" id="valorPuntuacionETabu10">0</p></div>
+			</div>
+			<div class="col-12 marginVHMedio overflow1"><p class="letraBotonEmpezar animated pulse slower infinite">¡Haz click para continuar!</p></div>
+		</div>
+	</div>
+	<!--FIN DEL TABU-->
+	<!--AYUDA DE LA MIMICA-->
+	<div id="AyudaMimica" class="pantallaAyudaMP displaynone overflow1">
+		<div class="row"> 
+			<div class="col-12">
+				<h1 class="margin3vw letraTiempo">Ayudas y Consejos Mimica</h1>
+				<p class="letraAyudaTexto"> 
+					- ¡Ayuda en camino!<br>
+					- Descripción 1<br> 
+					- Descripción 2<br> 
+					- Descripción 3<br> 
+					- Descripción 4<br> 
+					- Descripción 5<br> 
+					- Descripción 6<br> 
+				</p>
+			</div>
+		</div>	
+	</div>
+	<!--FIN DE AYUDA DEL MENU PRINCIPAL-->
+	<!--AJUSTES DE la Mimica-->
+	<div id="PantallaMimicaSettings" class="displaynone overflow1 fondoMimica">
+		<img src="./media/volver.png" class="posicionImagenVolverMenu grow" onclick="volverMP();">
+		<img src="./media/AyudaMenu.png" class="posicionImagenAyuda grow" id="ImagenAyudaMimica" onclick="mostrarAyudaMimica();">
+		<p class="letraImagenAyudaMP posLetraAyuda">Ayuda</p>
+		<div class="row">
+			<div class="col-12">
+				<h1 class="TituloQuiz animated fadeIn">Mímica</h1>
+			</div>
+			<div class="col-1"></div>
+			<div class="col-4 seleccionItemsQuiz marginTop2 tooltip1">
+				<label for="numEquiposMimica" class="letraSelects grow">Nº Equipos</label>
+			    <select id="numEquiposMimica" class="form-control tamanyoSelect" required> 
+			        <option>1</option>
+			        <option>2</option>
+			        <option>3</option>
+			        <option selected>4</option>
+			        <option>5</option>
+			        <option>6</option>
+			        <option>7</option>
+			        <option>8</option>
+			        <option>9</option>
+			        <option>10</option>
+			    </select>
+			    <span class="tooltiptext1">Selecciona el número de equipos que van a participar</span>
+			</div>	
+			<div class="col-2"></div>
+			<div class="col-4 seleccionItemsQuiz marginTop2 tooltip1">
+				<div class="col-12"><label for="TiempoQuiz" class="letraSelects grow">Duración Pregunta</label></div>
+			    <div class="col-12">
+			    	<select id="TiempoQuizMinMimica" class="form-control tamanyoSelect displayInlineblock" required> 
+				        <option>0</option>
+				        <option selected>1</option>
+				        <option>2</option>
+				        <option>3</option>
+				    </select>
+				    <strong>:</strong>
+				    <select id="TiempoQuizSecMimica" class="form-control tamanyoSelect displayInlineblock" required> 
+				        <option selected>00</option>
+				        <option>10</option>
+				        <option>20</option>
+				        <option>30</option>
+				        <option>40</option>
+				        <option>50</option>
+				    </select>
+			   	</div>
+			   	<div class="col-12 paddingTop1">
+			   		<p>
+			   			(Min : Seg)		
+			   		</p>
+			   	</div>
+				<span class="tooltiptext1">Selecciona el tiempo límite de cada pregunta</span>
+			</div>
+			<div class="col-1"></div>
+			<!--Siguiente fila-->
+			<div class="col-2"></div>
+			<div class="col-8 seleccionItemsQuiz marginTop1 padding1 AjusteBorderRadius1" >
+				<div class="col-3 displayInlineblock sinpadding paddingTop10">
+					<img src="./media/error.png" class="ImagenDCPQ animated fadeIn slow"><p class="letraTexto1">0 Puntos<br>Fallo</p>
+				</div>
+				<div class="col-3 displayInlineblock sinpadding paddingTop10">
+					<img src="./media/ok.png" class="ImagenDCPQ animated fadeIn animationDelay5"><p class="letraTexto1">+10 Puntos<br>¡Casi!</p>
+				</div>
+				<div class="col-3 displayInlineblock sinpadding paddingTop10">
+					<img src="./media/tick.png" class="ImagenDCPQ animated fadeIn animationDelay6"><p class="letraTexto1">+20 Puntos<br>Acierto	</p>
+				</div>
+			</div>
+			<div class="col-2"></div>
+		</div>
+		<div class="BotonEmpezar grow" onclick="PrePreguntaMimica();">
+			<p class="letraBotonEmpezar animated pulse slower infinite">¡Empezar!</p>
+		</div>
+	</div>
+	<!--FIN DE AJUSTES DEL Mimica-->
+	<!--PANTALLA DEL Mimica-->	
+	<div id="PantallaMimica" class="displaynone overflow1 fondoMimica">
+		<div class="pantallaNegro cursorPointer" id="pantallaNegroMimica" onclick="hidePantallaNegroMimica();">
+			<p class="textoPantallaNegro1" id="textoTurnoEquipoPNegraMimica">Nunca apareceré</p>
+			<p class="textoPantallaNegro3">¡Prepara tu actuación!</p>
+			<p class="textoPantallaNegro2 animated pulse slower infinite">Click para empezar</p>
+		</div>	
+		<div class="BotonFinalizarJuego fondoRojo1 grow" id="BotonFinalizarMimica" onclick="FinalizarJuego('Mimica');"><p class="letraSelectsPartyTitulos">Acabar Juego</p></div>
+		<img src="./media/volver.png" class="posicionImagenVolverMenu grow" onclick="volverMP();">
+		<div class="row sinmargin">
+			<div class="col-12">
+				<h1 class="TituloQuiz animated fadeIn">Mímica</h1>
+			</div>
+			<!--Siguiente fila-->
+			<div class="col-3"></div>
+			<div class="col-6 marginVHEnorme tooltip1"><p class="tooltiptext2 visible animated pulse slower infinite letraTexto1" id="textoPuntuarRespuestaMimica">¡Puntúa la respuesta!</p></div>
+			<div class="col-3"></div>
+			<!--Siguiente fila-->
+			<div class="col-3"></div>
+			<div class="col-2">	
+				<div class="fondoRojo1 anchoCorto1 margin25 padding10 grow cursorPointer" id="ImagenDCPQFalloMimica" onclick="respuestaMimica(0);">
+					<img src="./media/error.png" class="ImagenDCPQ"><p class="paddingTop10 letraTexto1">Fallo</p>
+				</div>
+			</div>
+			<div class="col-2">	
+				<div class="fondoAmarillo1 anchoCorto1 margin25 padding10 grow cursorPointer" id="ImagenDCPQCasiMimica" onclick="respuestaMimica(10);">
+					<img src="./media/ok.png" class="ImagenDCPQ"><p class="paddingTop10 letraTexto1">¡Casi!</p>
+				</div>
+			</div>
+			<div class="col-2">	
+				<div class="fondoVerde2 anchoCorto1 margin25 padding10 grow cursorPointer" id="ImagenDCPQAciertoMimica" onclick="respuestaMimica(20);">
+					<img src="./media/tick.png" class="ImagenDCPQ"><p class="paddingTop10 letraTexto1">Acierto</p>
+				</div>
+			</div>
+			<div class="col-3"></div>
+			<!--Siguiente fila-->
+			<div class="col-3"></div>
+			<div class="col-6 marginVHGrande">
+				<div class="tiempoContador" id="tiempoContadorMimica">60</div>
+				<div class="progress">
+                	<div class="progress-bar" id="barraProgresoMimica"></div>
+            	</div>
+			</div>
+			<div class="col-3">
+				<div class="cursorPointer"><img src="./media/pause.png" onclick="togglePlayPause('Mimica');" class="imagenPlayPause" id="imagenPausaPlayMimica"></div>
+			</div>
+			<!--Siguiente fila-->
+			<div class="col-5"></div>
+			<div class="col-2 marginVHMedGra visibilityHidden" id="textoTimeUpMimica"><p class="fondoRojo2 letraTiempo animated pulse slow infinite overflow1">¡Tiempo!</p></div>
+			<div class="col-5"></div>
+			<!--Siguiente fila-->
+			<div class="col-2 BotonRepetir fondoAmarillo2 marginVHGrande grow" onclick="RepetirMimica();"><p class="letraBotonEmpezar">Repetir!</p></div>
+			<div class="col-3"></div>
+			<div class="col-2 marginVHGrande posEquipotexto"><p class="letraBotonEmpezar" id="textoTurnoEquipoMimica">Equipo 3</p></div>
+			<div class="col-3"></div>
+			<div class="col-2 BotonContinuar marginVHGrande fondoGris2" id="botonContinuarMimica" onclick="ContinuarMimica();"><p class="letraBotonEmpezar">Continuar</p></div>
+		</div>
+		<!--Fin de las filas fondoVerde3-->
+	</div>
+	<!--Pantalla de puntuaciones-->
+	<div id="PantallaPuntuacionesMimica" class="displaynone overflow1 PantallaPuntuaciones fondoMimica">
+		<div class="col-12">
+			<h1 class="TituloQuiz animated fadeIn">Mímica</h1>
+		</div>
+		<div class="BloqueTransparente1" onclick="PasarTurnoMimica();"></div>
+		<div class="BloqueTransparente2" onclick="PasarTurnoMimica();"></div>
+		<div class="BotonFinalizarJuego fondoRojo1 grow" id="BotonFinalizarMimica" onclick="FinalizarJuego('Mimica');"><p class="letraSelectsPartyTitulos">Acabar Juego</p></div>
+		<div class="row centrarElemsEnDiv height80">
+			<!--Siguiente fila-->
+			<div id="verEquipoMimica1" class="row marginVHGrande">
+				<div class="col-3"><p class="nombreEquipos fondoEquipos centrarElemsEnDiv2">Equipo 1</p></div>
+				<div class="col-7 AjusteMarginLeft">
+					<div class="progress2">
+	            		<div class="progress-bar2 background1" id="barraPuntuacionEMimica1"></div>
+	            	</div>
+	            </div>
+	            <div class="col-2 sinpadding"><p class="valorPuntuacion centrarElemsEnDiv2" id="valorPuntuacionEMimica1">0</p></div>
+	        </div>
+            <div id="verEquipoMimica2" class="row">
+	            <div class="col-3 marginVHPequenyo"><p class="nombreEquipos fondoEquipos centrarElemsEnDiv2">Equipo 2</p></div>
+				<div class="col-7 marginVHPequenyo AjusteMarginLeft">
+					<div class="progress2">
+	            		<div class="progress-bar2 background2" id="barraPuntuacionEMimica2"></div>
+	            	</div>
+				</div>
+				<div class="col-2 marginVHPequenyo sinpadding"><p class="valorPuntuacion centrarElemsEnDiv2" id="valorPuntuacionEMimica2">0</p></div>
+			</div>
+			<div id="verEquipoMimica3" class="row">
+				<div class="col-3 marginVHPequenyo"><p class="nombreEquipos fondoEquipos centrarElemsEnDiv2">Equipo 3</p></div>
+				<div class="col-7 marginVHPequenyo AjusteMarginLeft">
+					<div class="progress2">
+	            		<div class="progress-bar2 background3" id="barraPuntuacionEMimica3"></div>
+	            	</div>
+				</div>
+				<div class="col-2 marginVHPequenyo sinpadding"><p class="valorPuntuacion sinpadding centrarElemsEnDiv2" id="valorPuntuacionEMimica3">0</p></div>
+			</div>
+			<div id="verEquipoMimica4" class="row">
+				<div class="col-3 marginVHPequenyo"><p class="nombreEquipos fondoEquipos centrarElemsEnDiv2">Equipo 4</p></div>
+				<div class="col-7 marginVHPequenyo AjusteMarginLeft">
+					<div class="progress2">
+	            		<div class="progress-bar2 background4" id="barraPuntuacionEMimica4"></div>
+	            	</div>
+				</div>
+				<div class="col-2 marginVHPequenyo sinpadding"><p class="valorPuntuacion centrarElemsEnDiv2" id="valorPuntuacionEMimica4">0</p></div>
+			</div>
+			<div id="verEquipoMimica5" class="row">
+				<div class="col-3 marginVHPequenyo"><p class="nombreEquipos fondoEquipos centrarElemsEnDiv2">Equipo 5</p></div>
+				<div class="col-7 marginVHPequenyo AjusteMarginLeft">
+					<div class="progress2">
+	            		<div class="progress-bar2 background5" id="barraPuntuacionEMimica5"></div>
+	            	</div>
+				</div>
+				<div class="col-2 marginVHPequenyo sinpadding"><p class="valorPuntuacion centrarElemsEnDiv2" id="valorPuntuacionEMimica5">0</p></div>
+			</div>
+			<div id="verEquipoMimica6" class="row">
+				<div class="col-3 marginVHPequenyo"><p class="nombreEquipos fondoEquipos centrarElemsEnDiv2">Equipo 6</p></div>
+				<div class="col-7 marginVHPequenyo AjusteMarginLeft">
+					<div class="progress2">
+	            		<div class="progress-bar2 background6" id="barraPuntuacionEMimica6"></div>
+	            	</div>
+				</div>
+				<div class="col-2 marginVHPequenyo sinpadding"><p class="valorPuntuacion centrarElemsEnDiv2" id="valorPuntuacionEMimica6">0</p></div>
+			</div>
+			<div id="verEquipoMimica7" class="row">
+				<div class="col-3 marginVHPequenyo"><p class="nombreEquipos fondoEquipos centrarElemsEnDiv2">Equipo 7</p></div>
+				<div class="col-7 marginVHPequenyo AjusteMarginLeft">
+					<div class="progress2">
+	            		<div class="progress-bar2 background7" id="barraPuntuacionEMimica7"></div>
+	            	</div>
+				</div>
+				<div class="col-2 marginVHPequenyo sinpadding"><p class="valorPuntuacion centrarElemsEnDiv2" id="valorPuntuacionEMimica7">0</p></div>
+			</div>
+			<div id="verEquipoMimica8" class="row">
+				<div class="col-3 marginVHPequenyo"><p class="nombreEquipos fondoEquipos centrarElemsEnDiv2">Equipo 8</p></div>
+				<div class="col-7 marginVHPequenyo AjusteMarginLeft">
+					<div class="progress2">
+	            		<div class="progress-bar2 background8" id="barraPuntuacionEMimica8"></div>
+	            	</div>
+				</div>
+				<div class="col-2 marginVHPequenyo sinpadding"><p class="valorPuntuacion centrarElemsEnDiv2" id="valorPuntuacionEMimica8">0</p></div>
+			</div>
+			<div id="verEquipoMimica9" class="row">
+				<div class="col-3 marginVHPequenyo"><p class="nombreEquipos fondoEquipos centrarElemsEnDiv2">Equipo 9</p></div>
+				<div class="col-7 marginVHPequenyo AjusteMarginLeft">
+					<div class="progress2">
+	            		<div class="progress-bar2 background9" id="barraPuntuacionEMimica9"></div>
+	            	</div>
+				</div>
+				<div class="col-2 marginVHPequenyo sinpadding"><p class="valorPuntuacion centrarElemsEnDiv2" id="valorPuntuacionEMimica9">0</p></div>
+			</div>
+			<div id="verEquipoMimica10" class="row">
+				<div class="col-3 marginVHPequenyo"><p class="nombreEquipos fondoEquipos centrarElemsEnDiv2">Equipo 10</p></div>
+				<div class="col-7 marginVHPequenyo AjusteMarginLeft">
+					<div class="progress2">
+	            		<div class="progress-bar2 background10" id="barraPuntuacionEMimica10"></div>
+	            	</div>
+				</div>
+				<div class="col-2 marginVHPequenyo sinpadding"><p class="valorPuntuacion centrarElemsEnDiv2" id="valorPuntuacionEMimica10">0</p></div>
+			</div>
+			<div class="col-12 marginVHMedio overflow1"><p class="letraBotonEmpezar animated pulse slower infinite">¡Haz click para continuar!</p></div>
+		</div>
+	</div>
+	<!--FIN de pantalla de puntuaciones Mimica-->
+	<!--FIN DE la Mimica-->
+	<!--AYUDA DEL Dibujo-->
+	<div id="AyudaDibujo" class="pantallaAyudaMP displaynone overflow1">
+		<div class="row"> 
+			<div class="col-12">
+				<h1 class="margin3vw letraTiempo">Ayudas y Consejos Dibujo</h1>
+				<p class="letraAyudaTexto"> 
+					- ¡Ayuda en camino!<br>
+					- Descripción 1<br> 
+					- Descripción 2<br> 
+					- Descripción 3<br> 
+					- Descripción 4<br> 
+					- Descripción 5<br> 
+					- Descripción 6<br> 
+				</p>
+			</div>
+		</div>	
+	</div>
+	<!--FIN DE AYUDA DEL DIBUJO-->
+	<!--AJUSTES DEL Dibujo-->
+	<div id="PantallaDibujoSettings" class="displaynone overflow1 fondoDibujo">
+		<img src="./media/volver.png" class="posicionImagenVolverMenu grow" onclick="volverMP();">
+		<img src="./media/AyudaMenu.png" class="posicionImagenAyuda grow" id="ImagenAyudaDibujo" onclick="mostrarAyudaDibujo();">
+		<p class="letraImagenAyudaMP posLetraAyuda">Ayuda</p>
+		<div class="row">
+			<div class="col-12">
+				<h1 class="TituloQuiz animated fadeIn">Dibujo</h1>
+			</div>
+			<div class="col-1"></div>
+			<div class="col-4 seleccionItemsQuiz marginTop2 tooltip1">
+				<label for="numEquiposDibujo" class="letraSelects grow">Nº Equipos</label>
+			    <select id="numEquiposDibujo" class="form-control tamanyoSelect" required> 
+			        <option>1</option>
+			        <option>2</option>
+			        <option>3</option>
+			        <option selected>4</option>
+			        <option>5</option>
+			        <option>6</option>
+			        <option>7</option>
+			        <option>8</option>
+			        <option>9</option>
+			        <option>10</option>
+			    </select>
+			    <span class="tooltiptext1">Selecciona el número de equipos que van a participar</span>
+			</div>	
+			<div class="col-2"></div>
+			<div class="col-4 seleccionItemsQuiz marginTop2 tooltip1">
+				<div class="col-12"><label for="TiempoQuiz" class="letraSelects grow">Duración Pregunta</label></div>
+			    <div class="col-12">
+			    	<select id="TiempoQuizMinDibujo" class="form-control tamanyoSelect displayInlineblock" required> 
+				        <option>0</option>
+				        <option selected>1</option>
+				        <option>2</option>
+				        <option>3</option>
+				    </select>
+				    <strong>:</strong>
+				    <select id="TiempoQuizSecDibujo" class="form-control tamanyoSelect displayInlineblock" required> 
+				        <option selected>00</option>
+				        <option>10</option>
+				        <option>20</option>
+				        <option>30</option>
+				        <option>40</option>
+				        <option>50</option>
+				    </select>
+			   	</div>
+			   	<div class="col-12 paddingTop1">
+			   		<p>
+			   			(Min : Seg)		
+			   		</p>
+			   	</div>
+				<span class="tooltiptext1">Selecciona el tiempo límite de cada pregunta</span>
+			</div>
+			<div class="col-1"></div>
+			<!--Siguiente fila-->
+			<div class="col-2"></div>
+			<div class="col-8 seleccionItemsQuiz marginTop1 padding1 AjusteBorderRadius1" >
+				<div class="col-3 displayInlineblock sinpadding paddingTop10">
+					<img src="./media/error.png" class="ImagenDCPQ animated fadeIn slow"><p class="letraTexto1">0 Puntos<br>Fallo</p>
+				</div>
+				<div class="col-3 displayInlineblock sinpadding paddingTop10">
+					<img src="./media/ok.png" class="ImagenDCPQ animated fadeIn animationDelay5"><p class="letraTexto1">+10 Puntos<br>¡Casi!</p>
+				</div>
+				<div class="col-3 displayInlineblock sinpadding paddingTop10">
+					<img src="./media/tick.png" class="ImagenDCPQ animated fadeIn animationDelay6"><p class="letraTexto1">+20 Puntos<br>Acierto	</p>
+				</div>
+			</div>
+			<div class="col-2"></div>
+		</div>
+		<div class="BotonEmpezar grow" onclick="PrePreguntaDibujo();">
+			<p class="letraBotonEmpezar animated pulse slower infinite">¡Empezar!</p>
+		</div>
+	</div>
+	<!--FIN DE AJUSTES DEL Dibujo-->
+	<!--PANTALLA DEL Dibujo-->	
+	<div id="PantallaDibujo" class="displaynone overflow1 fondoDibujo">
+		<div class="pantallaNegro cursorPointer" id="pantallaNegroDibujo" onclick="hidePantallaNegroDibujo();">
+			<p class="textoPantallaNegro1" id="textoTurnoEquipoPNegraDibujo">Nunca apareceré</p>
+			<p class="textoPantallaNegro3">¡Prepárate para dibujar!</p>
+			<p class="textoPantallaNegro2 animated pulse slower infinite">Click para empezar</p>
+		</div>	
+		<div class="BotonFinalizarJuego fondoRojo1 grow" id="BotonFinalizarDibujo" onclick="FinalizarJuego('Dibujo');"><p class="letraSelectsPartyTitulos">Acabar Juego</p></div>
+		<img src="./media/volver.png" class="posicionImagenVolverMenu grow" onclick="volverMP();">
+		<div class="row sinmargin">
+			<div class="col-12">
+				<h1 class="TituloQuiz animated fadeIn">Dibujo</h1>
+			</div>
+			<!--Siguiente fila-->
+			<div class="col-3"></div>
+			<div class="col-6 marginVHEnorme tooltip1"><p class="tooltiptext2 visible animated pulse slower infinite letraTexto1" id="textoPuntuarRespuestaDibujo">¡Puntúa la respuesta!</p></div>
+			<div class="col-3"></div>
+			<!--Siguiente fila-->
+			<div class="col-3"></div>
+			<div class="col-2">	
+				<div class="fondoRojo1 anchoCorto1 margin25 padding10 grow cursorPointer" id="ImagenDCPQFalloDibujo" onclick="respuestaDibujo(0);">
+					<img src="./media/error.png" class="ImagenDCPQ"><p class="paddingTop10 letraTexto1">Fallo</p>
+				</div>
+			</div>
+			<div class="col-2">	
+				<div class="fondoAmarillo1 anchoCorto1 margin25 padding10 grow cursorPointer" id="ImagenDCPQCasiDibujo" onclick="respuestaDibujo(10);">
+					<img src="./media/ok.png" class="ImagenDCPQ"><p class="paddingTop10 letraTexto1">¡Casi!</p>
+				</div>
+			</div>
+			<div class="col-2">	
+				<div class="fondoVerde2 anchoCorto1 margin25 padding10 grow cursorPointer" id="ImagenDCPQAciertoDibujo" onclick="respuestaDibujo(20);">
+					<img src="./media/tick.png" class="ImagenDCPQ"><p class="paddingTop10 letraTexto1">Acierto</p>
+				</div>
+			</div>
+			<div class="col-3"></div>
+			<!--Siguiente fila-->
+			<div class="col-3"></div>
+			<div class="col-6 marginVHGrande">
+				<div class="tiempoContador" id="tiempoContadorDibujo">60</div>
+				<div class="progress">
+                	<div class="progress-bar" id="barraProgresoDibujo"></div>
+            	</div>
+			</div>
+			<div class="col-3">
+				<div class="cursorPointer" ><img src="./media/pause.png" onclick="togglePlayPause('Dibujo');" class="imagenPlayPause" id="imagenPausaPlayDibujo"></div>
+			</div>
+			<!--Siguiente fila-->
+			<div class="col-5"></div>
+			<div class="col-2 marginVHMedGra visibilityHidden" id="textoTimeUpDibujo"><p class="fondoRojo2 letraTiempo animated pulse slow infinite overflow1">¡Tiempo!</p></div>
+			<div class="col-5"></div>
+			<!--Siguiente fila-->
+			<div class="col-2 BotonRepetir fondoAmarillo2 marginVHGrande grow" onclick="RepetirDibujo();"><p class="letraBotonEmpezar">Repetir!</p></div>
+			<div class="col-3"></div>
+			<div class="col-2 marginVHGrande posEquipotexto"><p class="letraBotonEmpezar" id="textoTurnoEquipoDibujo">Equipo 3</p></div>
+			<div class="col-3"></div>
+			<div class="col-2 BotonContinuar marginVHGrande fondoGris2" id="botonContinuarDibujo" onclick="ContinuarDibujo();"><p class="letraBotonEmpezar">Continuar</p></div>
+		</div>
+		<!--Fin de las filas fondoVerde3-->
+	</div>
+	<!--Pantalla de puntuaciones-->
+	<div id="PantallaPuntuacionesDibujo" class="displaynone overflow1 PantallaPuntuaciones fondoDibujo">
+		<div class="col-12">
+			<h1 class="TituloQuiz animated fadeIn">Dibujo</h1>
+		</div>
+		<div class="BloqueTransparente1" onclick="PasarTurnoDibujo();"></div>
+		<div class="BloqueTransparente2" onclick="PasarTurnoDibujo();"></div>
+		<div class="BotonFinalizarJuego fondoRojo1 grow" id="BotonFinalizarDibujo" onclick="FinalizarJuego('Dibujo');"><p class="letraSelectsPartyTitulos">Acabar Juego</p></div>
+		<div class="row centrarElemsEnDiv height80">
+			<!--Siguiente fila-->
+			<div id="verEquipoDibujo1" class="row marginVHGrande">
+				<div class="col-3"><p class="nombreEquipos fondoEquipos centrarElemsEnDiv2">Equipo 1</p></div>
+				<div class="col-7 AjusteMarginLeft">
+					<div class="progress2">
+	            		<div class="progress-bar2 background1" id="barraPuntuacionEDibujo1"></div>
+	            	</div>
+	            </div>
+	            <div class="col-2 sinpadding"><p class="valorPuntuacion centrarElemsEnDiv2" id="valorPuntuacionEDibujo1">0</p></div>
+	        </div>
+            <div id="verEquipoDibujo2" class="row">
+	            <div class="col-3 marginVHPequenyo"><p class="nombreEquipos fondoEquipos centrarElemsEnDiv2">Equipo 2</p></div>
+				<div class="col-7 marginVHPequenyo AjusteMarginLeft">
+					<div class="progress2">
+	            		<div class="progress-bar2 background2" id="barraPuntuacionEDibujo2"></div>
+	            	</div>
+				</div>
+				<div class="col-2 marginVHPequenyo sinpadding"><p class="valorPuntuacion centrarElemsEnDiv2" id="valorPuntuacionEDibujo2">0</p></div>
+			</div>
+			<div id="verEquipoDibujo3" class="row">
+				<div class="col-3 marginVHPequenyo"><p class="nombreEquipos fondoEquipos centrarElemsEnDiv2">Equipo 3</p></div>
+				<div class="col-7 marginVHPequenyo AjusteMarginLeft">
+					<div class="progress2">
+	            		<div class="progress-bar2 background3" id="barraPuntuacionEDibujo3"></div>
+	            	</div>
+				</div>
+				<div class="col-2 marginVHPequenyo sinpadding"><p class="valorPuntuacion sinpadding centrarElemsEnDiv2" id="valorPuntuacionEDibujo3">0</p></div>
+			</div>
+			<div id="verEquipoDibujo4" class="row">
+				<div class="col-3 marginVHPequenyo"><p class="nombreEquipos fondoEquipos centrarElemsEnDiv2">Equipo 4</p></div>
+				<div class="col-7 marginVHPequenyo AjusteMarginLeft">
+					<div class="progress2">
+	            		<div class="progress-bar2 background4" id="barraPuntuacionEDibujo4"></div>
+	            	</div>
+				</div>
+				<div class="col-2 marginVHPequenyo sinpadding"><p class="valorPuntuacion centrarElemsEnDiv2" id="valorPuntuacionEDibujo4">0</p></div>
+			</div>
+			<div id="verEquipoDibujo5" class="row">
+				<div class="col-3 marginVHPequenyo"><p class="nombreEquipos fondoEquipos centrarElemsEnDiv2">Equipo 5</p></div>
+				<div class="col-7 marginVHPequenyo AjusteMarginLeft">
+					<div class="progress2">
+	            		<div class="progress-bar2 background5" id="barraPuntuacionEDibujo5"></div>
+	            	</div>
+				</div>
+				<div class="col-2 marginVHPequenyo sinpadding"><p class="valorPuntuacion centrarElemsEnDiv2" id="valorPuntuacionEDibujo5">0</p></div>
+			</div>
+			<div id="verEquipoDibujo6" class="row">
+				<div class="col-3 marginVHPequenyo"><p class="nombreEquipos fondoEquipos centrarElemsEnDiv2">Equipo 6</p></div>
+				<div class="col-7 marginVHPequenyo AjusteMarginLeft">
+					<div class="progress2">
+	            		<div class="progress-bar2 background6" id="barraPuntuacionEDibujo6"></div>
+	            	</div>
+				</div>
+				<div class="col-2 marginVHPequenyo sinpadding"><p class="valorPuntuacion centrarElemsEnDiv2" id="valorPuntuacionEDibujo6">0</p></div>
+			</div>
+			<div id="verEquipoDibujo7" class="row">
+				<div class="col-3 marginVHPequenyo"><p class="nombreEquipos fondoEquipos centrarElemsEnDiv2">Equipo 7</p></div>
+				<div class="col-7 marginVHPequenyo AjusteMarginLeft">
+					<div class="progress2">
+	            		<div class="progress-bar2 background7" id="barraPuntuacionEDibujo7"></div>
+	            	</div>
+				</div>
+				<div class="col-2 marginVHPequenyo sinpadding"><p class="valorPuntuacion centrarElemsEnDiv2" id="valorPuntuacionEDibujo7">0</p></div>
+			</div>
+			<div id="verEquipoDibujo8" class="row">
+				<div class="col-3 marginVHPequenyo"><p class="nombreEquipos fondoEquipos centrarElemsEnDiv2">Equipo 8</p></div>
+				<div class="col-7 marginVHPequenyo AjusteMarginLeft">
+					<div class="progress2">
+	            		<div class="progress-bar2 background8" id="barraPuntuacionEDibujo8"></div>
+	            	</div>
+				</div>
+				<div class="col-2 marginVHPequenyo sinpadding"><p class="valorPuntuacion centrarElemsEnDiv2" id="valorPuntuacionEDibujo8">0</p></div>
+			</div>
+			<div id="verEquipoDibujo9" class="row">
+				<div class="col-3 marginVHPequenyo"><p class="nombreEquipos fondoEquipos centrarElemsEnDiv2">Equipo 9</p></div>
+				<div class="col-7 marginVHPequenyo AjusteMarginLeft">
+					<div class="progress2">
+	            		<div class="progress-bar2 background9" id="barraPuntuacionEDibujo9"></div>
+	            	</div>
+				</div>
+				<div class="col-2 marginVHPequenyo sinpadding"><p class="valorPuntuacion centrarElemsEnDiv2" id="valorPuntuacionEDibujo9">0</p></div>
+			</div>
+			<div id="verEquipoDibujo10" class="row">
+				<div class="col-3 marginVHPequenyo"><p class="nombreEquipos fondoEquipos centrarElemsEnDiv2">Equipo 10</p></div>
+				<div class="col-7 marginVHPequenyo AjusteMarginLeft">
+					<div class="progress2">
+	            		<div class="progress-bar2 background10" id="barraPuntuacionEDibujo10"></div>
+	            	</div>
+				</div>
+				<div class="col-2 marginVHPequenyo sinpadding"><p class="valorPuntuacion centrarElemsEnDiv2" id="valorPuntuacionEDibujo10">0</p></div>
+			</div>
+			<div class="col-12 marginVHMedio overflow1"><p class="letraBotonEmpezar animated pulse slower infinite">¡Haz click para continuar!</p></div>
+		</div>
+	</div>
+	<!--FIN de pantalla de puntuaciones-->
+	<!--AYUDA DEL PARTY-->
+	<div id="AyudaParty" class="pantallaAyudaMP displaynone overflow1">
+		<div class="row"> 
+			<div class="col-12">
+				<h1 class="margin3vw letraTiempo">Ayudas y Consejos Party</h1>
+				<p class="letraAyudaTexto"> 
+					- ¡Ayuda en camino!<br>
+					- Descripción 1<br> 
+					- Descripción 2<br> 
+					- Descripción 3<br> 
+					- Descripción 4<br> 
+					- Descripción 5<br> 
+					- Descripción 6<br> 
+				</p>
+			</div>
+		</div>	
+	</div>
+	<!--FIN DE AYUDA DEL PARTY-->
+	<!--AJUSTES DEL Party-->
+	<div id="PantallaPartySettings" class="displaynone overflow1 fondoParty">
+		<img src="./media/volver.png" class="posicionImagenVolverMenu grow" onclick="volverMP();">
+		<img src="./media/AyudaMenu.png" class="posicionImagenAyuda grow" id="ImagenAyudaParty" onclick="mostrarAyudaParty();">
+		<p class="letraImagenAyudaMP posLetraAyuda">Ayuda</p>
+		<div class="row sinmargin">
+			<div class="col-12">
+				<h1 class="TituloQuiz animated fadeIn">Party</h1>
+			</div>
+		</div>
+		<div class="row sinmargin">
+			<div class="col-2 sinpadding"></div>
+			<div class="col-3 marginTop2 tooltip1 fondoSelectParty fondoPartyParty">
+				<label for="numEquiposParty" class="letraPartySelects grow">Nº Equipos</label>
+			    <select id="numEquiposParty" class="form-control tamanyoSelect" required> 
+			        <option>1</option>
+			        <option>2</option>
+			        <option>3</option>
+			        <option selected>4</option>
+			        <option>5</option>
+			        <option>6</option>
+			    </select>
+			    <span class="tooltiptext1">Selecciona el número de equipos que van a participar</span>
+			</div>	
+			<div class="col-2 sinpadding"></div>
+			<div class="col-3 marginTop2 tooltip1 fondoSelectParty fondoPartyParty">
+				<label for="tableroParty" class="letraPartySelects grow">Tablero</label>
+			    <select id="tableroParty" class="form-control tamanyoSelect2" required> 
+			        <option selected>Ladders & Snakes</option>
+			        <option disabled>Trivial</option>
+			    </select>
+			    <span class="tooltiptext1">Selecciona el tablero en el que se va a jugar</span>
+			</div>
+			<div class="col-2 sinpadding"></div>
+			<!--Siguiente fila-->
+			<div class="col-1 sinpadding"></div>
+			<div class="col-5 tooltip1 marginRight1 fondoSelectParty fondoPartyQuiz" id="PartyQuizSelect">
+				<div class="col-12">	
+				    <div class="page__toggle">
+				      	<label class="toggle">
+					        <input class="toggle__input " type="checkbox" checked id="chbx1" onclick="toggleBackgroundStatus('#PartyQuizSelect');">
+					        <span class="toggle__label grow">
+					        	<span class="toggle__text letraPartySelects">Quiz</span>
+					        </span>
+				      	</label>
+				    </div>
+				</div>
+				<hr>
+				<!--Siguiente fila-->
+ 				<div class="col-12 paddingPartySelect">
+ 					<label for="numEquiposDibujo" class="letraPartySelects displayInlineblock marginLeft1">Tiempo</label>
+			    	<select id="TiempoPartyQuizMin" class="form-control tamanyoSelect displayInlineblock marginLeft2" required> 
+				        <option selected="">0</option>
+				        <option>1</option>
+				        <option>2</option>
+				        <option>3</option>
+				    </select>
+				    <strong>:</strong>
+				    <select id="TiempoPartyQuizSec" class="form-control tamanyoSelect displayInlineblock" required> 
+				        <option>00</option>
+				        <option>10</option>
+				        <option>20</option>
+				        <option selected>30</option>
+				        <option>40</option>
+				        <option>50</option>
+				    </select>
+			   	</div>
+				<!--Siguiente fila-->
+				<div class="col-12 paddingTopSolo10">
+					<label for="prioridadPartyQuiz" class="letraPartySelects displayInlineblock marginLeft1">Frecuencia</label>
+				    <select id="prioridadPartyQuiz" class="form-control tamanyoSelect3 displayInlineblock marginLeft2" required> 
+				        <option selected>Alta</option>
+				        <option>Normal</option>
+				        <option>Baja</option>
+				    </select>
+				</div>
+				<span class="tooltiptext1">¡Marca el tick para jugar a la prueba de quiz dentro del party! Selecciona el tiempo que durará la pregunta del quiz (min:seg) y la frecuencia con la que aparecerá este tipo de prueba en el tablero.</span>
+				<!--Se acabó el primer cuadro-->
+			</div>
+			<div class="col-5 tooltip1 marginLeft2 fondoSelectParty fondoPartyTabu" id="PartyTabuSelect">
+				<div class="col-12">	
+				    <div class="page__toggle">
+				      	<label class="toggle">
+					        <input class="toggle__input " type="checkbox" checked id="chbx2" onclick="toggleBackgroundStatus('#PartyTabuSelect');">
+					        <span class="toggle__label grow">
+					        	<span class="toggle__text letraPartySelects">Tabú</span>
+					        </span>
+				      	</label>
+				    </div>
+				</div>
+				<hr>
+				<!--Siguiente fila-->
+ 				<div class="col-12 paddingPartySelect">
+ 					<label for="TiempoPartyTabuMin" class="letraPartySelects displayInlineblock marginLeft1">Tiempo</label>
+			    	<select id="TiempoPartyTabuMin" class="form-control tamanyoSelect displayInlineblock marginLeft2" required> 
+				        <option selected>0</option>
+				        <option>1</option>
+				        <option>2</option>
+				        <option>3</option>
+				    </select>
+				    <strong>:</strong>
+				    <select id="TiempoPartyTabuSec" class="form-control tamanyoSelect displayInlineblock" required> 
+				        <option>00</option>
+				        <option>10</option>
+				        <option>20</option>
+				        <option>30</option>
+				        <option selected>40</option>
+				        <option>50</option>
+				    </select>
+			   	</div>
+				<!--Siguiente fila-->
+				<div class="col-12 paddingTopSolo10">
+					<label for="prioridadPartyTabu" class="letraPartySelects displayInlineblock marginLeft1">Frecuencia</label>
+				    <select id="prioridadPartyTabu" class="form-control tamanyoSelect3 displayInlineblock marginLeft2" required> 
+				        <option>Alta</option>
+				        <option>Normal</option>
+				        <option selected>Baja</option>
+				    </select>
+				</div>
+				<span class="tooltiptext1">¡Marca el tick para jugar a la prueba del tabú dentro del party! Selecciona el tiempo que durará la pregunta del quiz (min:seg) y la frecuencia con la que aparecerá este tipo de prueba en el tablero.</span>
+				<!--Se acabó el segundo cuadro-->
+			</div>
+			<!--Siguiente fila-->
+			<div class="col-1 sinpadding"></div>
+			<div class="col-5 tooltip1 marginRight1 fondoSelectParty fondoPartyMimica" id="PartyMimicaSelect">
+				<div class="col-12">	
+				    <div class="page__toggle">
+				      	<label class="toggle">
+					        <input class="toggle__input " type="checkbox" checked id="chbx3" onclick="toggleBackgroundStatus('#PartyMimicaSelect');">
+					        <span class="toggle__label grow">
+					        	<span class="toggle__text letraPartySelects">Mímica</span>
+					        </span>
+				      	</label>
+				    </div>
+				</div>
+				<hr>
+				<!--Siguiente fila-->
+ 				<div class="col-12 paddingPartySelect">
+ 					<label for="TiempoPartyMimicaMin" class="letraPartySelects displayInlineblock marginLeft1">Tiempo</label>
+			    	<select id="TiempoPartyMimicaMin" class="form-control tamanyoSelect displayInlineblock marginLeft2" required> 
+				        <option>0</option>
+				        <option selected>1</option>
+				        <option>2</option>
+				        <option>3</option>
+				    </select>
+				    <strong>:</strong>
+				    <select id="TiempoPartyMimicaSec" class="form-control tamanyoSelect displayInlineblock" required> 
+				        <option selected>00</option>
+				        <option>10</option>
+				        <option>20</option>
+				        <option>30</option>
+				        <option>40</option>
+				        <option>50</option>
+				    </select>
+			   	</div>
+				<!--Siguiente fila-->
+				<div class="col-12 paddingTopSolo10">
+					<label for="prioridadPartyMimica" class="letraPartySelects displayInlineblock marginLeft1">Frecuencia</label>
+				    <select id="prioridadPartyMimica" class="form-control tamanyoSelect3 displayInlineblock marginLeft2" required> 
+				        <option>Alta</option>
+				        <option>Normal</option>
+				        <option selected>Baja</option>
+				    </select>
+				</div>
+				<span class="tooltiptext1">¡Marca el tick para jugar a la prueba de la mímica dentro del party! Selecciona el tiempo que durará la pregunta del quiz (min:seg) y la frecuencia con la que aparecerá este tipo de prueba en el tablero.</span>
+				<!--Se acabó el tercer cuadro-->
+			</div>
+			<div class="col-5 tooltip1 marginLeft2 fondoSelectParty fondoPartyDibujo" id="PartyDibujoSelect">
+				<div class="col-12 sinpadding">	
+				    <div class="page__toggle">
+				      	<label class="toggle">
+					        <input class="toggle__input " type="checkbox" checked id="chbx4" onclick="toggleBackgroundStatus('#PartyDibujoSelect');">
+					        <span class="toggle__label grow">
+					        	<span class="toggle__text letraPartySelects">Dibujo</span>
+					        </span>
+				      	</label>
+				    </div>
+				</div>
+				<hr>
+				<!--Siguiente fila-->
+ 				<div class="col-12 paddingPartySelect">
+ 					<label for="TiempoPartyDibujoMin" class="letraPartySelects displayInlineblock marginLeft1">Tiempo</label>
+			    	<select id="TiempoPartyDibujoMin" class="form-control tamanyoSelect displayInlineblock marginLeft2" required> 
+				        <option>0</option>
+				        <option selected>1</option>
+				        <option>2</option>
+				        <option>3</option>
+				    </select>
+				    <strong>:</strong>
+				    <select id="TiempoPartyDibujoSec" class="form-control tamanyoSelect displayInlineblock" required> 
+				        <option selected>00</option>
+				        <option>10</option>
+				        <option>20</option>
+				        <option>30</option>
+				        <option>40</option>
+				        <option>50</option>
+				    </select>
+			   	</div>
+				<!--Siguiente fila-->
+				<div class="col-12 paddingTopSolo10">
+					<label for="prioridadPartyDibujo" class="letraPartySelects displayInlineblock marginLeft1">Frecuencia</label>
+				    <select id="prioridadPartyDibujo" class="form-control tamanyoSelect3 displayInlineblock marginLeft2" required> 
+				        <option>Alta</option>
+				        <option>Normal</option>
+				        <option selected>Baja</option>
+				    </select>
+				</div>
+				<span class="tooltiptext1">¡Marca el tick para jugar a la prueba de dibujo dentro del party! Selecciona el tiempo que durará la pregunta del quiz (min:seg) y la frecuencia con la que aparecerá este tipo de prueba en el tablero.</span>
+				<!--Se acabó el cuarto cuadro-->
+			</div>
+			<div class="col-1 sinpadding"></div>
+		</div>
+		<div class="BotonEmpezar grow fondoVerde3 AjusteMarginTop" onclick="PrePartyGame();">
+			<p class="letraPartySelects animated pulse slower infinite">¡Empezar!</p>
+		</div>
+	</div>
+	<!--FIN DE AJUSTES DEL Party-->
+	<!--PANTALLA DEL JUEGO DE PARTY-->	
+	<div id="PantallaParty" class="displaynone overflow1 fondoParty">
+		<div class="pantallaNegro cursorPointer displaynone" id="pantallaNotificacionesParty">
+			<p class="textoPantallaNegro4" id="textoNotificacionParty1">¡Has acertado la prueba!</p>
+			<p class="textoPantallaNegro5" id="textoNotificacionParty2">Puedes volver a tirar (Turno Actual: 1/3)</p>
+			<div class="BotonoNotificacionesParty1 grow fondoVerde3 AjusteMarginTop" id="BotonContinuarNotifParty" onclick="SiguienteRonda();">
+				<p class="letraPartySelects" id="textoContinuarNotifParty">Continuar al Turno 2</p>
+			</div>
+			<div class="BotonoNotificacionesParty2 grow fondoRojo2 AjusteMarginTop" id="BotonperderTurno"onclick="SiguienteEquipo();">
+				<p class="letraPartySelects">*Perder Turno</p>
+			</div>
+			<p class="textoPantallaNegro6 animated pulse slower infinite" id="textoNotificacionParty3">*Pasar el turno al siguiente equipo</p>
+		</div>
+		<img src="./media/volver.png" class="posicionImagenVolverMenu grow" onclick="volverMP();">
+		<img src="./media/escalera.png" class="Imgescalera1">
+		<img src="./media/escalera.png" class="Imgescalera2">
+		<img src="./media/serpiente.png" class="Imgserpiente1">
+		<img src="./media/serpiente.png" class="Imgserpiente2">
+		<div>
+			<h1 class="TituloPartyGame">Snakes & Ladders</h1>
+		</div>
+		<!--Pantalla del Juego (tablero)-->
+		<div id="JuegoParty" class="PosJuegoParty">
+			<img src="./media/ficha1.png" id="FichaEquipo1" class="ImagenFichaDeJuego posFichaE1">
+			<img src="./media/ficha2.png" id="FichaEquipo2" class="ImagenFichaDeJuego posFichaE2">
+			<img src="./media/ficha3.png" id="FichaEquipo3" class="ImagenFichaDeJuego posFichaE3">
+			<img src="./media/ficha4.png" id="FichaEquipo4" class="ImagenFichaDeJuego posFichaE4">
+			<img src="./media/ficha5.png" id="FichaEquipo5" class="ImagenFichaDeJuego posFichaE5">
+			<img src="./media/ficha6.png" id="FichaEquipo6" class="ImagenFichaDeJuego posFichaE6">
+			<table>
+			    <tr>
+			        <th id="CasillaEnd" class="fondoPartyCasillaEnd">End</th> 
+			        <th id="Casilla14" class="">14</th>
+			        <th id="Casilla13" class="">13</th>
+			        <th id="Casilla12" class="">12</th>
+			    </tr>
+			    <tr>
+			        <td id="Casilla8" class="">8</td>
+			        <td id="Casilla9" class="">9</td>
+			        <td id="Casilla10" class="">10</td>
+			        <td id="Casilla11" class="">11</td>		        		        			     			        			        
+			    </tr>
+			    <tr>
+			        <td id="Casilla7" class="">7</td>
+			        <td id="Casilla6" class="">6</td>
+			        <td id="Casilla5" class="">5</td>
+			        <td id="Casilla4" class="">4</td>      
+			    </tr>
+			    <tr>
+			        <td id="CasillaStart" class="fondoPartyCasillaStart">Start</td>
+			        <td id="Casilla1" class="">1</td>
+			        <td id="Casilla2" class="">2</td>
+			        <td id="Casilla3" class="">3</td>  
+			    </tr>
+			</table>
+		</div>
+		<!--Leyenda del Juego casillas (tablero)-->
+		<div id="LeyendaCasillas" class="PosLeyendaCasillas">
+			<div id="LeyendaCasillas1" class="row sinmargin paddingLeyendaCasillas">
+				<div class="col-4 sinpadding"><div class="cuadradoLeyCasillaQuiz fondoPartyCasillaQuiz"></div></div>
+				<div class="col-8 sinpadding"><p class="letraPartySelects posLetraLeyendaFichas" id="titulotextoPartyQuiz">Quiz</p></div>
+			</div>
+				<!--Siguiente fila-->
+			<div id="LeyendaCasillas2" class="row sinmargin paddingLeyendaCasillas">
+				<div class="col-4 sinpadding"><div class="cuadradoLeyCasillaTabu fondoPartyCasillaTabu"></div></div>
+				<div class="col-8 sinpadding"><p class="letraPartySelects posLetraLeyendaFichas" id="titulotextoPartyTabu">Tabú</p></div>
+			</div>
+				<!--Siguiente fila-->
+			<div id="LeyendaCasillas3" class="row sinmargin paddingLeyendaCasillas">
+				<div class="col-4 sinpadding"><div class="cuadradoLeyCasillaMimica fondoPartyCasillaMimica"></div></div>
+				<div class="col-8 sinpadding"><p class="letraPartySelects posLetraLeyendaFichas" id="titulotextoPartyMimica">Mímica</p></div>
+			</div>
+				<!--Siguiente fila-->
+			<div id="LeyendaCasillas4" class="row sinmargin paddingLeyendaCasillas">
+				<div class="col-4 sinpadding"><div class="cuadradoLeyCasillaDibujo fondoPartyCasillaDibujo"></div></div>
+				<div class="col-8 sinpadding"><p class="letraPartySelects posLetraLeyendaFichas" id="titulotextoPartyDibujo">Dibujo</p></div>
+			</div>
+		</div>
+		<!--Leyenda del Juego fichas (tablero)-->
+		<div id="LeyendaFichas" class="sinmargin sinpadding PosLeyendaFichas">
+			<div id="LeyendaFicha1" class="row sinmargin paddingLeyendaFichas">
+				<div class="col-4 sinpadding"><img src="./media/ficha1.png" class="imagenFicha"></div>
+				<div class="col-8 sinpadding"><p class="letraPartySelects posLetraLeyendaFichas" id="titulotextoPartyEquipo1">Equipo 1</p></div>
+			</div>
+				<!--Siguiente fila-->
+			<div id="LeyendaFicha2" class="row sinmargin paddingLeyendaFichas">
+				<div class="col-4 sinpadding"><img src="./media/ficha2.png" class="imagenFicha"></div>
+				<div class="col-8 sinpadding"><p class="letraPartySelects posLetraLeyendaFichas" id="titulotextoPartyEquipo2">Equipo 2</p></div>
+			</div>
+				<!--Siguiente fila-->
+			<div id="LeyendaFicha3" class="row sinmargin paddingLeyendaFichas">
+				<div class="col-4 sinpadding"><img src="./media/ficha3.png" class="imagenFicha"></div>
+				<div class="col-8 sinpadding"><p class="letraPartySelects posLetraLeyendaFichas" id="titulotextoPartyEquipo3">Equipo 3</p></div>
+			</div>
+				<!--Siguiente fila-->
+			<div id="LeyendaFicha4" class="row sinmargin paddingLeyendaFichas">
+				<div class="col-4 sinpadding"><img src="./media/ficha4.png" class="imagenFicha"></div>
+				<div class="col-8 sinpadding"><p class="letraPartySelects posLetraLeyendaFichas" id="titulotextoPartyEquipo4">Equipo 4</p></div>
+			</div>
+				<!--Siguiente fila-->
+			<div id="LeyendaFicha5" class="row sinmargin paddingLeyendaFichas">
+				<div class="col-4 sinpadding"><img src="./media/ficha5.png" class="imagenFicha"></div>
+				<div class="col-8 sinpadding"><p class="letraPartySelects posLetraLeyendaFichas" id="titulotextoPartyEquipo5">Equipo 5</p></div>
+			</div>
+				<!--Siguiente fila-->
+			<div id="LeyendaFicha6" class="row sinmargin paddingLeyendaFichas">
+				<div class="col-4 sinpadding"><img src="./media/ficha6.png" class="imagenFicha"></div>
+				<div class="col-8 sinpadding"><p class="letraPartySelects posLetraLeyendaFichas" id="titulotextoPartyEquipo6">Equipo 6</p></div>
+			</div>
+		</div>
+		<!--Turno Equipo y Dado-->
+		<div id="TurnoYdado" class="PosTurnoYdado">
+			<div class="row sinmargin">
+				<div class="col-12 sinpadding">
+					<p class="letraPartySelects"><u>Turno</u></p>
+				</div>
+				<div class="col-12">
+					<p class="letraPartySelects" id="TurnoEquipoParty">Equipo 1 ~ (1/3)</p>
+				</div>
+			</div>
+				<!--Siguiente fila-->
+			<div class="row sinmargin">
+				<div class="col-12 sinpadding"><p class="fondoVerde3 letraPartySelects posTiraELDado" id="tiraeldado">¡Tira el dado!</p></div>
+				<!--Siguiente fila-->
+				<div class="col-12 sinpadding"><img src="./media/dadocara1.png" class="imagenDado" id="ImagenClickDado" onclick="TurnoParty();"></div>
+				<!--Siguiente fila-->
+				<div class="col-12 sinpadding" id="HazClickDado"><p class="fondoVerde3 letraPartySelects posHazClickenDado animated pulse slower infinite tooltiptext3">¡Haz click!</p></div>
+			</div>
+		</div>
+		<div id="MensajeExplicatorioAbajo" class="PosMensExpl">
+			<p class="letraPartySelects" id="mensajeexplicativotexto">¡Ha tocado Quiz! Empezando en 5</p>
+		</div>
+	</div>
+	<!--FIN DE PANTALLA DEL JUEGO DE PARTY-->	
+	<!--AYUDA DEL EP-->
+	<div id="AyudaEP" class="pantallaAyudaMP displaynone overflow1">
+		<div class="row"> 
+			<div class="col-12">
+				<h1 class="margin3vw letraTiempo">Ayudas y Consejos EP</h1>
+				<p class="letraAyudaTexto"> 
+					<strong>Existen por lo menos 4 preguntas que deben responderse al hacer esta mini presentación:</strong><br>
+					- ¿Cuál es el producto o servicio?<br>
+					- ¿Qué impacto va a tener tu producto?<br>
+					- Contra qué o quién te enfrentas?<br>
+					- ¿Qué ventajas tienes sobre él o ello?<br><br>
+					<strong> Las claves para elaborar un elevator pitch de éxito:</strong><br>
+					- Presentarse brevemente, resumir de forma concisa las preguntas básicas, exponer de qué trata el proyecto y transmitir su esencia.<br>
+				</p>
+			</div>
+		</div>	
+	</div>
+	<!--FIN DE AYUDA DEL EP-->
+	<!--AJUSTES DEL EP-->
+	<div id="PantallaEPSettings" class="displaynone overflow1 fondoEP">
+		<img src="./media/volver.png" class="posicionImagenVolverMenu grow" onclick="volverMP();">
+		<img src="./media/AyudaMenu.png" class="posicionImagenAyuda grow" id="ImagenAyudaEP" onclick="mostrarAyudaEP();">
+		<p class="letraImagenAyudaMP posLetraAyuda">Ayuda</p>
+		<div class="row">
+			<div class="col-12">
+				<h1 class="TituloQuiz animated fadeIn">Elevator Pitch</h1>
+			</div>	
+			<div class="col-4"></div>
+			<div class="col-4 seleccionItemsEP marginTop1 tooltip1">
+				<div class="col-12"><label for="TiempoQuiz" class="letraDuracionAscensor grow">Duración del Ascensor</label></div>
+			    <div class="col-12">
+			    	<select id="TiempoQuizMinEP" class="form-control tamanyoSelect displayInlineblock" required> 
+				        <option>0</option>
+				        <option selected>1</option>
+				        <option>2</option>
+				    </select>
+				    <strong>:</strong>
+				    <select id="TiempoQuizSecEP" class="form-control tamanyoSelect displayInlineblock" required> 
+				        <option selected>00</option>
+				        <option>10</option>
+				        <option>20</option>
+				        <option>30</option>
+				        <option>40</option>
+				        <option>50</option>
+				    </select>
+			   	</div>
+			   	<div class="col-12 paddingTop1">
+			   		<p>
+			   			(Min : Seg)		
+			   		</p>
+			   	</div>
+				<span class="tooltiptext1">Selecciona la duración del ascensor</span>
+			</div>
+			<div class="col-4"></div>
+			<!--Siguiente fila-->
+			<div class="col-3"></div>
+			<div class="col-6 seleccionItemsQuiz marginTop1 padding1 AjusteBorderRadius1">
+				<p class="letraBotonEmpezar animated fadeIn slower">
+					¡Sé rápido, eficaz y conciso!<br>¡No te quedes sin tiempo!
+				</p>	
+			</div>
+			<div class="col-3"></div>
+		</div>
+		<div class="BotonEmpezar grow" onclick="PrePreEP();">
+			<p class="letraBotonEmpezar animated pulse slower infinite">¡Empezar!</p>
+		</div>
+	</div>
+	<!--FIN DE AJUSTES DEL EP-->
+	<!--PANTALLA DEL EP-->
+	<div id="PantallaEP" class="displaynone fondoEP2 overflow1">
+		<!--PANTALLA DE PREGUNTA-->
+		<div class="pantallaPreguntaEP displaynone" id="pantallaPreguntaEP">
+			<p class="textoPantallaNegro7">¿Deseas jugar otra vez?</p>
+			<div class="BotonEP1 grow fondoPReguntaEP1" onclick="resetearVariables(); ocultarTodo(); PreElevatorPitch();">
+				<p class="letraPartySelects">Sí, repetir</p>
+			</div>
+			<div class="BotonEP2 grow fondoPReguntaEP2 AjusteMarginTop" onclick="resetearVariables(); ocultarTodo(); EP();">
+				<p class="letraPartySelects">Cambiar duración</p>
+			</div>
+			<div class="BotonEP3 grow fondoPReguntaEP3 AjusteMarginTop" onclick="volverMP();">
+				<p class="letraPartySelects">Volver al Menú Principal</p>
+			</div>
+		</div>
+		<!--PANTALLA NEGRO DE PREPARACIÓN-->
+		<div class="pantallaNegro cursorPointer" id="pantallaNegroEP" onclick="hidePantallaNegroEP();">
+			<p class="textoPantallaNegro1">Prepara tu presentación</p>
+			<p class="textoPantallaNegro3" id="textoTiempoSolo">¡Solo tienes 1 minuto y 50 segundos!</p>
+			<p class="textoPantallaNegro2 animated pulse slower infinite">Click para empezar</p>
+		</div>
+		<div class="row">
+			<div class="col-12">
+				<h1 class="TituloQuiz animated fadeIn">Elevator Pitch</h1>
+			</div>
+		</div>
+		<img src="./media/volver.png" class="posicionImagenVolverMenu grow" onclick="volverMP();">
+		<img src="./media/edificio.png" class="posicionImagenEdificio">
+		<img src="./media/ascensor.png" class="posicionImagenAscensor" id="imagenAscensor">
+		<img src="./media/grass.png" class="posicionImagenGrass">
+		<img src="./media/adelante.png" class="posicionImagenAdelante" id="adelanteImagenEP">
+		<p class="posletraPiso1 importantGrowANDColor" id="letraPiso1">Piso 1</p>
+		<p class="posletraPiso2" id="letraPiso2">Piso 2</p>
+		<p class="posletraPiso3" id="letraPiso3">Piso 3</p>
+		<p class="posletraPiso4" id="letraPiso4">Piso 4</p>
+		<p class="posletraPiso5" id="letraPiso5">Piso 5</p>
+		<p class="posletraPiso6" id="letraPiso6">Piso 6</p>
+		<div class="fondoGuiaAscensor"></div>
+		<div class="fondoGuiaAscensor2"></div>
+		<div class="fondoGuiaAscensor3"></div>
+		
+		<div class="posContadorYPause">
+			<div class="displayInlineblock ancho1">
+				<div class=" letraTemporizador displayInlineblock" id="contadorMinEP">0</div>
+				<p class=" letraTemporizador displayInlineblock">:</p>
+				<div class=" letraTemporizador displayInlineblock" id="contadorSecEP">47</div>		
+			</div>
+			<div class="imagenPlayPausePOS displayInlineblock">
+				<img src="./media/pause.png" onclick="togglePlayPause('EP');" class="cursorPointer imagenPlayPause2" id="imagenPausaPlayEP">
+			</div> 
+		</div>
+		<div class="visibilityHidden posTiempoEP" id="textoTimeUpEP">
+			<p class="fondoRojo2 letraTiempo2 animated pulse slow infinite">¡Tiempo!</p>
+		</div>
+		<div class="posFinalizarEP fondoVerde2 grow displaynone cursorPointer" id="BotonFinalizarEP" onclick="PreguntaEP();">
+			<p class="letraSelectsPartyTitulos">Finalizar</p>
+		</div>
+	</div>
+	<!--FIN DE LA PANTALLA DEL EP-->
+	<!--PANTALLA DE VICTORIA PREDETERMINADA-->
+	<div class="cursorPointer displaynone overflow1 fondoDibujo" id="PantallaVictoria" onclick="volverMP();">
+		<p class="letraVictoria">¡Enhorabuena!</p>
+		<p class="letraEquipoGanador animated fadeInRight" id="TextoVictoriaPrincipal">Victoria para el equipo 1</p>
+		
+		<div class="row marginVHMedio posVictoriaBarras" id="PartyVitoria">
+			<div class="posImagenVictoriaParty animated fadeInDown animationDelay7">
+				<img src="./media/ficha1.png" class="imagenVictoriaParty" id="imagenVictoriaParty">
+			</div>
+			<div class="posLetraVictoriaParty animated fadeInUp animationDelay7">
+				<p class="letraVictoriaPartyEquipo2" id="textoequipovictoriaParty">Patata</p>
+			</div>
+		</div>
+		<div class="row posVictoriaBarras">
+			<!--Siguiente Equipo-->
+			<div id="PVEquipo1" class="row animated fadeInLeft animationDelay8">
+				<div class="col-2 sinpadding">
+					<p class="nombreEquipos leftText sinmargin">1º</p>
+				</div>
+				<div class="col-2 sinpadding">
+					<p class="nombreEquipos leftText sinmargin" id="nombreEquipoVictoria1">Equipo 1</p>
+				</div>
+				<div class="col-4 sinpadding">
+					<div class="progress2 posAjusteBarrasVictoria">
+		            	<div class="progress-bar2" id="barraPuntuacionesVictoria1"></div>
+		            </div>
+				</div>
+				<div class="col-4 sinpadding"><p class="RightText letraSelectsPartyTitulos" id="puntosVictoria1">0</p></div>
+			</div>
+			<!--Siguiente Equipo-->
+			<div id="PVEquipo2" class="row animated fadeInLeft animationDelay10">
+				<div class="col-2 sinpadding marginVHPequenyo">
+					<p class="nombreEquipos leftText sinmargin">2º</p>
+				</div>
+				<div class="col-2 sinpadding marginVHPequenyo">
+					<p class="nombreEquipos leftText sinmargin" id="nombreEquipoVictoria2">Equipo 2</p>
+				</div>
+				<div class="col-4 sinpadding marginVHPequenyo">
+					<div class="progress2 posAjusteBarrasVictoria">
+		            	<div class="progress-bar2" id="barraPuntuacionesVictoria2"></div>
+		            </div>
+				</div>
+				<div class="col-4 sinpadding marginVHPequenyo"><p class="RightText letraSelectsPartyTitulos" id="puntosVictoria2">0</p></div>
+			</div>
+			<!--Siguiente Equipo-->
+			<div id="PVEquipo3" class="row animated fadeInLeft animationDelay12">
+				<div class="col-2 sinpadding marginVHPequenyo">
+					<p class="nombreEquipos leftText sinmargin">3º</p>
+				</div>
+				<div class="col-2 sinpadding marginVHPequenyo">
+					<p class="nombreEquipos leftText sinmargin" id="nombreEquipoVictoria3">Equipo 3</p>
+				</div>
+				<div class="col-4 sinpadding marginVHPequenyo">
+					<div class="progress2 posAjusteBarrasVictoria">
+		            	<div class="progress-bar2 " id="barraPuntuacionesVictoria3"></div>
+		            </div>
+				</div>
+				<div class="col-4 sinpadding marginVHPequenyo"><p class="RightText letraSelectsPartyTitulos" id="puntosVictoria3">0</p></div>
+			</div>
+			<!--Siguiente Equipo-->
+			<div id="PVEquipo4" class="row animated fadeInLeft animationDelay14">
+				<div class="col-2 sinpadding marginVHPequenyo">
+					<p class="nombreEquipos leftText sinmargin">4º</p>
+				</div>
+				<div class="col-2 sinpadding marginVHPequenyo">
+					<p class="nombreEquipos leftText sinmargin" id="nombreEquipoVictoria4">Equipo 4</p>
+				</div>
+				<div class="col-4 sinpadding marginVHPequenyo">
+					<div class="progress2 posAjusteBarrasVictoria">
+		            	<div class="progress-bar2" id="barraPuntuacionesVictoria4"></div>
+		            </div>
+				</div>
+				<div class="col-4 sinpadding marginVHPequenyo"><p class="RightText letraSelectsPartyTitulos" id="puntosVictoria4">0</p></div>
+			</div>
+			<!--Siguiente Equipo-->
+			<div id="PVEquipo5" class="row animated fadeInLeft animationDelay16">
+				<div class="col-2 sinpadding marginVHPequenyo">
+					<p class="nombreEquipos leftText sinmargin">5º</p>
+				</div>
+				<div class="col-2 sinpadding marginVHPequenyo">
+					<p class="nombreEquipos leftText sinmargin" id="nombreEquipoVictoria5">Equipo 5</p>
+				</div>
+				<div class="col-4 sinpadding marginVHPequenyo">
+					<div class="progress2 posAjusteBarrasVictoria">
+		            	<div class="progress-bar2" id="barraPuntuacionesVictoria5"></div>
+		            </div>
+				</div>
+				<div class="col-4 sinpadding marginVHPequenyo"><p class="RightText letraSelectsPartyTitulos" id="puntosVictoria5">0</p></div>
+			</div>
+		</div>
+		<p class="letraContinuarVictoria animated pulse slower infinite" id="">(Haz click para volver al menú principal)</p>
+	</div>	<!--FIN DE PANTALLA DE VICTORIA PREDETERMINADA-->
+</body>
+</html>		<!--FIN DEL TRABAJO-->

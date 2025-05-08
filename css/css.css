@@ -1,0 +1,1815 @@
+/*Archivo CSS*/
+
+/*Ordenado alfabeticamente para ordenar el caos, más o menos. (Recomiendo ir al html click derecho, go to definition).*/
+
+@charset "utf-8";
+
+html
+{
+	height: 100%;
+	width: 100%;
+}
+body{
+	text-align: center;
+	font-family: 'Roboto', sans-serif;
+}
+hr{
+  border-top: 2px solid black;
+  margin: 0px;
+}
+p{
+	margin-bottom: 0px;
+}
+select {
+display: block;
+margin: 0 auto;
+}
+
+
+/*Ajustes para la tablaaa del juego*/
+table {
+  border-collapse: separate;
+  border-spacing: 0;
+  position: absolute;
+  top: 5%;
+  left: 5%;
+  width: 90%;
+  height: 90%;
+}
+table tr th,
+table tr td {
+  border-right: 3px groove black;
+  border-bottom: 3px groove black;
+  padding: 5px;
+  width: 25%;
+  height: 25%;  /*Se está sobreescribiendo*/
+  font-size: 1.2vw;
+  font-weight: 700;
+}
+table tr th:first-child,
+table tr td:first-child {
+  border-left: 3px groove black;
+}
+table tr th {
+  border-top: 3px groove black;
+}
+
+/* top-left border-radius */
+table tr:first-child th:first-child {
+  border-top-left-radius: 1vw;
+}
+
+/* top-right border-radius */
+table tr:first-child th:last-child {
+  border-top-right-radius: 1vw;
+}
+
+/* bottom-left border-radius */
+table tr:last-child td:first-child {
+  border-bottom-left-radius: 1vw;
+}
+
+/* bottom-right border-radius */
+table tr:last-child td:last-child {
+  border-bottom-right-radius: 1vw;
+}
+/*Fin de ajustes de la tabla del juego*/
+.AjusteBloque
+{
+  width: 100%;
+}
+.AjusteBorderRadius1
+{
+  border-radius: 3vw !important;
+  border-width: 2px !important;
+  background-image: radial-gradient(#4cff6894 5%, #72e96e 60%, #029513fc 100%) !important;
+}
+.AjusteMarginLeft
+{
+  margin-left: -2.3%;
+  display: flex;
+  align-items: center;
+}
+.AjusteMarginLeft1
+{
+  margin-left: 2.3%;
+}
+.AjusteMarginTop
+{
+  margin-top: 1.5vw !important;
+} 
+.ancho1
+{
+  height: 42px;
+  width: 110px;
+}
+.anchoCorto1
+{
+  width: 80%;
+  margin: 0px auto;
+}
+.animationDelay1{animation-delay: 0.1s;}
+.animationDelay2{animation-delay: 0.2s;}
+.animationDelay3{animation-delay: 0.3s;}
+.animationDelay4{animation-delay: 0.4s;}
+.animationDelay5{animation-delay: 0.5s;}
+.animationDelay6{animation-delay: 1s;}
+.animationDelay7{animation-delay: 1.5s;}
+.animationDelay8{animation-delay: 2s;}
+.animationDelay9{animation-delay: 2.5s;}
+.animationDelay10{animation-delay: 3s;}
+.animationDelay11{animation-delay: 3.5s;}
+.animationDelay12{animation-delay: 4s;}
+.animationDelay13{animation-delay: 4.5s;}
+.animationDelay14{animation-delay: 5s;}
+.animationDelay15{animation-delay: 5.5s;}
+.animationDelay16{animation-delay: 6s;}
+
+
+.animationduration3s{animation-duration: 3s;}
+
+
+.aumentarTamanyo1
+{
+  transform: scale(1.2);
+}
+.aumentarTamanyo5
+{
+  transform: scale(1.5);
+}
+.BloqueTransparente1
+{
+  position: absolute;
+  top: 13%;
+  left:0%;
+  width:100%;
+  height:87%;
+  cursor: pointer;
+  z-index: 900;
+}
+.BloqueTransparente2
+{
+  position: absolute;
+  top: 0%;
+  left:0%;
+  width:80%;
+  height:13%;
+  cursor: pointer;
+  z-index: 900;
+}
+.Boton1
+{
+	height: 9.5vh;
+	vertical-align: middle;
+	cursor: pointer;
+}
+.BotonContinuar
+{
+  position: absolute; 
+  right: 5vw;
+  bottom: 8vh;
+  cursor: default;
+}
+.BotonEmpezar
+{
+  position: relative;
+  width: 12%;
+  height: auto;
+  margin-top: 3%;
+  left: 44%;
+  padding: 1% 0%;
+  background-image: radial-gradient(#b3d7ff94 5%, #b3d7ff 25%, #007bffb8 110%);
+  border-radius: 1vw;
+  border-style: groove;
+  border-width: 3px;
+  border-color: black;
+  cursor: pointer;
+}
+.BotonEP1
+{
+  position: relative;
+  top: 18%;
+  width: 40%;
+  height: auto;
+  left: 30%;
+  padding: 11px 0px;
+
+  border-radius: 1vw;
+  border-style: groove;
+  border-width: 3px;
+  border-color: black;
+  cursor: pointer;
+}
+.BotonEP2
+{
+  position: relative;
+  top: 18%;
+  width: 40%;
+  height: auto;
+  left: 30%;
+  padding: 11px 0px;
+
+  border-radius: 1vw;
+  border-style: groove;
+  border-width: 3px;
+  border-color: black;
+  cursor: pointer;
+}
+.BotonEP3
+{
+  position: relative;
+  top: 18%;
+  width: 40%;
+  height: auto;
+  left: 30%;
+  padding: 11px 0px;
+
+  border-radius: 1vw;
+  border-style: groove;
+  border-width: 3px;
+  border-color: black;
+  cursor: pointer;
+}
+.BotonFinalizarJuego
+{
+  position: absolute; 
+  right: 4%;
+  top: 4%;
+  padding: 5px 10px;
+  cursor: pointer;
+  z-index: 1;
+}
+.BotonoNotificacionesParty1
+{
+  position: relative;
+  top: 18%;
+  width: 20%;
+  height: auto;
+  margin-top: 3%;
+  left: 40%;
+  padding: 1% 0%;
+  background-image: radial-gradient(#b3d7ff94 5%, #b3d7ff 25%, #007bffb8 110%);
+  border-radius: 1vw;
+  border-style: groove;
+  border-width: 3px;
+  border-color: black;
+  cursor: pointer;
+}
+.BotonoNotificacionesParty2
+{
+  position: relative;
+  top: 20%;
+  width: 18%;
+  height: auto;
+  margin-top: 3%;
+  left: 41%;
+  padding: 1% 0%;
+  background-image: radial-gradient(#b3d7ff94 5%, #b3d7ff 25%, #007bffb8 110%);
+  border-radius: 1vw;
+  border-style: groove;
+  border-width: 3px;
+  border-color: black;
+  cursor: pointer;
+}
+.BotonRepetir
+{
+  position: absolute; 
+  left: 5vw;
+  bottom: 8vh;
+  cursor: pointer;
+}
+.buttonMenu
+{
+	width: 100%;
+}
+.centrarElemsEnDiv
+{
+  margin: auto;
+}
+.centrarElemsEnDiv2
+{
+    display: flex;
+    align-items: center;
+}
+.height80
+{
+    height: 80%;
+}
+
+.colorBotonQuiz		{	background-image: linear-gradient(40deg, #00aaffa8 70%, #ffffff00 70%);	}
+.colorBotonTabu		{	background-image: linear-gradient(40deg, #ca3737e8 70%, #ffffff00 70%);	}
+.colorBotonMimica	{	background-image: linear-gradient(40deg, #fbeb00 70%, #ffffff00 70%);	}
+.colorBotonDibujo	{	background-image: linear-gradient(40deg, #5db627 70%, #ffffff00 70%);	}
+.colorBotonParty	{	background-image: linear-gradient(40deg, #ff9738 70%, #ffffff00 70%);	}
+.colorBotonEP		{	background-image: linear-gradient(40deg, #df00ff 70%, #ffffff00 70%);	}
+
+.colorDCBotonQuiz	{	background-image: linear-gradient(140deg, #ffffff00 30%, #00aaffa8 30%);}
+.colorDCBotonTabu	{	background-image: linear-gradient(140deg, #ffffff00 30%, #ca3737e8 30%);}
+.colorDCBotonMimica	{	background-image: linear-gradient(140deg, #ffffff00 30%, #fbeb00 30%);	}
+.colorDCBotonDibujo	{	background-image: linear-gradient(140deg, #ffffff00 30%, #5db627 30%);	}
+.colorDCBotonParty	{	background-image: linear-gradient(140deg, #ffffff00 30%, #ff9738 30%);	}
+.colorDCBotonEP		{	background-image: linear-gradient(140deg, #ffffff00 30%, #df00ff 30%);	}
+
+.container
+{
+	margin: 0px;
+	width: 100%;
+}
+
+.cuadradoLeyCasillaQuiz
+{
+  position: absolute;  
+  left: 50%;
+  height: 2.7vw;
+  width: 2.7vw;
+
+  border-radius: 1vw;
+  border-style: double;
+  border-width: 2px;
+  border-color: black;
+}
+.cuadradoLeyCasillaTabu
+{  
+  position: absolute;
+  left: 50%;
+  height: 2.7vw;
+  width: 2.7vw;
+
+  border-radius: 1vw;
+  border-style: double;
+  border-width: 2px;
+  border-color: black;
+}
+.cuadradoLeyCasillaMimica
+{  
+  position: absolute;
+  left: 50%;
+  height: 2.7vw;
+  width: 2.7vw;
+
+  border-radius: 1vw;
+  border-style: double;
+  border-width: 2px;
+  border-color: black;
+}
+.cuadradoLeyCasillaDibujo
+{  
+  position: absolute;
+  left: 50%;
+  height: 2.7vw;
+  width: 2.7vw;
+
+  border-radius: 1vw;
+  border-style: double;
+  border-width: 2px;
+  border-color: black;
+}
+
+.cursorPointer
+{
+  cursor: pointer;
+}
+.descripcionMP
+{
+	display: none;
+	height: 9.5vh;
+	vertical-align: middle;
+}
+.displayInlineblock
+{
+  display: inline-block;
+  margin: 0px;
+}
+.displaynone
+{
+	display: none;
+}
+.fondoAmarillo1
+{
+  background-image: linear-gradient(135deg,#ffe900 -40%, #fdff0014 50%, #ffe900 140%);
+  border-radius: 1vw;
+  border-style: groove;
+  border-width: 2px;
+  border-color: black;
+}
+.fondoAmarillo2
+{
+  background-image: linear-gradient(135deg,#ffe900 0%, #fdff0050 50%, #ffe900 100%);
+  border-radius: 1vw;
+  border-style: groove;
+  border-width: 2px;
+  border-color: black;
+}
+.fondoAzul1
+{
+  background-image: radial-gradient(#b3d7ff94 5%, #b3d7ff 25%, #007bffb8 110%);
+  border-radius: 1vw;
+  border-style: groove;
+  border-width: 2px;
+  border-color: black;
+}
+.fondoDibujo
+{
+  position: absolute;
+  width: 100%;  
+  height: 100%;
+  background-image: linear-gradient(360deg, #fff00000 -10%, #157f8414 50%, #d8ffce8a 70%), radial-gradient(#ff000000 5%, #ffff0000 35%, #b7ffc6 130%);
+  background-size: 100% 100%; 
+}
+.fondoEP
+{
+  position: absolute;
+  width: 100%;
+  height: 100%;
+  background-size: 100% 100%;
+  background-image: linear-gradient(360deg, #fdb2ff7d -10%, #ffbaba24 50%, #ffffff75 70%), radial-gradient(#ff000000 5%, #ffffff00 35%, #eb54e7e8 125%);
+}
+.fondoEP2
+{
+  position: absolute;
+  width: 100%;
+  height: 100%;
+  background-size: 100% 100%;
+  background-image: linear-gradient(360deg, #fdb2ff00 -10%, #ffbaba24 70%, #87f5ff75 100%), radial-gradient(#ff000000 5%, #ffffff00 35%, #6fe6ff63 125%);
+}
+.fondoPReguntaEP1
+{
+ background-color: #afd9a5; 
+}
+.fondoPReguntaEP2
+{
+   background-color: #d0d9a5; 
+}
+.fondoPReguntaEP3
+{
+   background-color: #dbbfb5; 
+}
+.fondoEquipos
+{
+  text-align: left;
+  margin: 0px 0px 0px 12vw;
+  height: 100%;
+}
+.fondoGris1
+{
+  background-image: radial-gradient(#ffffff 5%, #e2e2e2 65%, #8b8b8b 115%) !important;
+  color: grey !important;
+  
+}
+.fondoGris2
+{
+  background-image: radial-gradient(#beddff 5%, #c6e0fd 25%, #a0a0a0cf 130%);
+  color: #9e9e9e;
+  border-radius: 1vw;
+  border-style: groove;
+  border-width: 2px;
+  border-color: black;
+}
+.fondoGuiaAscensor
+{
+  position: absolute;
+  top: calc(31% - 4vh);
+  left: calc(50% + 40.5vh);
+  width: 11vh;
+  height: 69%;
+
+  background-image: radial-gradient(#c4c4c4 5%, #aeaeae 75%, #808080cf 100%);
+  border-top-right-radius: 1vw;
+  border-top-left-radius: 1vw;
+  border-style: groove;
+  border-top-width: 2px;
+  border-left-width: 2px;
+  border-right-width: 2px;
+  border-bottom-width: 0px;
+  border-color: #6e6e6e; 
+}
+.fondoGuiaAscensor2
+{
+  position: absolute;
+  top: calc(31% - 4vh + 2px);
+  left: calc(50% + 44vh);
+  width: 4px;
+  height: calc(69% - 2px);
+  background-color: #7e7e7e; 
+}
+.fondoGuiaAscensor3
+{
+  position: absolute;
+  top: calc(31% - 4vh + 2px);
+  left: calc(50% + 47.5vh);
+  width: 4px;
+  height: calc(69% - 2px);
+  background-color: #7e7e7e; 
+}
+.fondoMimica
+{
+  position: absolute;
+  width: 100%;  
+  height: 100%;
+  background-image: linear-gradient(360deg, #fff00000 -10%, #157f8414 50%, #ffffff8a 70%), radial-gradient(#ff000000 5%, #ffff0000 30%, #fffb55 120%);
+  background-size: 100% 100%;  
+}
+.fondoParty
+{
+  position: absolute;
+  width: 100%;  
+  height: 100%;
+  background-image: linear-gradient(360deg, #ffc00000 -10%, #44727400 50%, #ffc10700 70%), radial-gradient(#ffc10700 5%, #ffff0000 38%, #ff9d00 170%);
+  background-size: 100% 100%;  
+}
+.fondoPartyParty{     background-image: radial-gradient(#ff940000 5%, #ffa80000 35%, #ff7900 140%);}
+.fondoPartyQuiz{      background-image: radial-gradient(#007bff59 0%, #b3d7ff 50%, #007bffb8 140%);}
+.fondoPartyTabu{      background-image: radial-gradient(#ff00005c 0%, #ff000021 50%, #ff0000db 140%);}
+.fondoPartyMimica{    background-image: radial-gradient(#ffe9004d 0%, #fdff0014 50%, #ffe900 140%);}
+.fondoPartyDibujo{    background-image: radial-gradient(#00ff0647 0%, #fdff0014 50%, #00ff06 140%);}
+
+.fondoPartyCasillaStart{  background-image: radial-gradient(#ffffff 0%, #f4f4f4 60%, #929292 140%);}
+.fondoPartyCasillaEnd{    background-image: radial-gradient(#00ff06 0%,#01d606 50%, #29cb4e 70%, #ffffff 130%);}
+.fondoPartyCasillaQuiz{   background-image: linear-gradient(#008bff -40%, #75dbff 30%, #75dbff 70%, #008bff 140%);}
+.fondoPartyCasillaTabu{   background-image: linear-gradient(#ff2929 -20%, #ffa5a5  35%, #ffa5a5 65%, #ff2929 120%);}
+.fondoPartyCasillaMimica{ background-image: linear-gradient(#fffa00 -20%, #f0ff0087 30%, #f0ff0087 70%, #fffa00 120%);}
+.fondoPartyCasillaDibujo{ background-image: linear-gradient(#00ff06 -20%, #bcff75 30%, #bcff75 70%, #00ff06 120%);}
+.fondoPartyCasillaNegra{  background-image: linear-gradient(#4a4a4a -20%, #9b9b9b 30%, #9b9b9b 70%, #4a4a4a 120%);}
+
+.fondoQuiz
+{
+  position: absolute;
+  width: 100%;  
+  height: 100%;
+  background-image: linear-gradient(360deg, #f6fcff7d -10%, #157f8414 50%, #ffffff8a 70%), radial-gradient(#ff000000 5%, #ffff0000 25%, #48ceff 110%);
+  background-size: 100% 100%; 
+}
+.fondoRojo1
+{
+  background-image: linear-gradient(125deg,#ff0000db -40%, #ff000021 50%, #ff0000db 140%);
+  border-radius: 1vw;
+  border-style: groove;
+  border-width: 2px;
+  border-color: black;
+}
+.fondoRojo2
+{
+  background-image: linear-gradient(125deg,#ff0000db -0%, #ff00004a 50%, #ff0000db 100%);
+  border-radius: 1vw;
+  border-style: double;
+  border-width: 2px;
+  border-color: black;
+  padding: 11px 0px;
+}
+.fondoSelectParty   /*FORMATO de los sleects del party.*/
+{
+  padding: 0px 0.9vw 0.9vw 0.9vw;
+  margin-top: 1vw;
+  border-radius: 1vw;
+  border-style: groove;
+  border-width: 2px;
+  border-color: black;
+}
+.fondoTabu
+{
+  position: absolute;
+  width: 100%;
+  height: 100%;
+  background-size: 100% 100%;
+  background-image: linear-gradient(360deg, #ffb2b27d -10%, #ffbaba24 50%, #ffffff75 70%), radial-gradient(#ff000000 5%, #ffffff00 35%, #ca3737e8 125%);
+}
+.fondoVerde1
+{
+  background-image: radial-gradient(#b3d7ff94 5%, #b3d7ff 25%, #007bffb8 110%);/*linear-gradient(360deg, #f6fcff7d -10%, #157f8414 50%, #ffffff8a 70%),*/ 
+  border-radius: 6vw;
+  border-style: groove;
+  border-width: 4px;
+  border-color: black;
+}
+.fondoVerde2
+{
+  background-image: linear-gradient(135deg,#00ff06 -40%, #fdff0014 50%, #00ff06 140%);
+  border-radius: 1vw;
+  border-style: groove;
+  border-width: 2px;
+  border-color: black;
+}
+.fondoVerde3
+{
+  background-image: linear-gradient(135deg, #00ff06 0%, #fdff0050 50%, #00ff06 100%);
+  border-radius: 1vw;
+  border-style: groove;
+  border-width: 2px;
+  border-color: black;
+}
+
+.grow { transition: all .2s ease-in-out; }
+.grow:hover { transform: scale(1.2); }
+
+.heightParty1
+{
+  height: 70%;
+}
+.heightParty2
+{
+  height: 15%;
+}
+.ImagenAyudaMenu
+{
+	position: relative;
+	width: auto;
+	height: 9.5vh;
+	margin-top: 20%;
+}
+.ImagenAyudaMenu:hover{cursor: pointer;}
+.Imgescalera1
+{
+  position: absolute;
+  top: calc(50% - 4vw);
+  left: calc(50% - 22.9vw + 4.5vw);
+  z-index: 6;
+  width: 9.5vw;
+  height: auto;
+  -webkit-transform:rotate(30deg);
+  -moz-transform: rotate(30deg);
+  -ms-transform: rotate(30deg);
+  -o-transform: rotate(30deg);
+  transform: rotate(30deg);
+}
+.Imgescalera2
+{
+  position: absolute;
+  top: calc(50% - 11.5vw);
+  left: calc(50% + 4.5vw);
+  z-index: 6;
+  width: 9.5vw;
+  height: auto;
+  -webkit-transform:rotate(42deg);
+  -moz-transform: rotate(42deg);
+  -ms-transform: rotate(42deg);
+  -o-transform: rotate(42deg);
+  transform: rotate(42deg);
+}
+.imagenDado
+{
+  width: 7vw;
+  height: auto;
+  cursor: pointer;
+  margin: 0.5vw 0px;
+}
+.ImagenDCPQ
+{
+  width: auto;
+  height: 9vh;
+}
+.imagenFicha
+{
+  height: auto;
+  width: 2.4vw;
+}
+.ImagenFichaDeJuego
+{
+  height: auto;
+  width: 1.5vw;
+  z-index: 9;
+}
+.imagenPlayPause
+{
+  position: absolute;
+  left: 0%;
+  bottom: 0%;
+  height: 42px;
+  width: auto;
+  z-index: 4;
+}
+.imagenPlayPause2
+{
+  height: 42px;
+  width: auto;
+  z-index: 4;
+}
+.imagenPlayPausePOS
+{
+  position: absolute;
+
+}
+.Imgserpiente1
+{
+  position: absolute;
+  top: calc(50% + 6vw);
+  left: calc(50% - 22.9vw + 14vw);
+  z-index: 6;
+  width: 11.48vw;
+  height: auto;
+  -webkit-transform:rotate(30deg);
+  -moz-transform: rotate(30deg);
+  -ms-transform: rotate(30deg);
+  -o-transform: rotate(30deg);
+  transform: rotate(30deg);
+}
+.Imgserpiente2
+{
+  position: absolute;
+  top: calc(50% - 10vw);
+  left: calc(50% - 22.9vw + 16vw);
+  z-index: 6;
+  width: 11.48vw;
+  height: auto;
+
+  -webkit-transform:rotate(-30deg) scaleX(-1);
+  -moz-transform: rotate(-30deg) scaleX(-1);
+   filter: FlipH;
+  -ms-filter: "FlipH";
+  -ms-transform: rotate(-30deg);
+  -o-transform: rotate(-30deg) scaleX(-1);
+  transform: rotate(-30deg) scaleX(-1); 
+}
+.ImagenTitulo
+{
+	height: auto;
+	width: 70%;
+	padding-top: 1%;
+}
+.imagenVictoriaParty
+{
+  height: 7vw;
+  width: auto;
+}
+.importantGrowANDColor
+{
+  color: green !important;
+  transition: all .2s ease-in-out !important;
+  transform: scale(1.5) !important;
+}
+.RightText
+{
+  position: relative;
+  height: 100%;
+  display: flex;
+  align-items: center;
+  text-align: left;
+  margin-left: 2vw;
+}
+.leftText
+{
+  text-align: right;
+}
+.letraAyudaTexto
+{
+  font-family: 'Righteous', cursive;
+}
+.letraBotonEmpezar
+{
+  font-family: 'Righteous', cursive;
+  font-size: 2vw;
+}
+.letraSelectsPartyTitulos
+{
+  font-family: 'Righteous', cursive;
+  font-size: 1.5vw;
+}
+.letraBotonMI
+{
+	height: 100%;
+	vertical-align: middle;
+	line-height: 10vh; 	/*Tiene que ser lo mismo que en Boton1*/ 
+	position: relative;
+	left: -4vw;
+	font-family: 'Righteous', cursive;
+	font-size: 3vw;
+}
+.letraDCMP
+{
+	height: 100%;
+	width: 70%;
+	vertical-align: middle;
+	line-height: 5vh; 	/*Tiene que ser lo mismo que en Boton1*/ 
+	position: relative;
+	text-align: center;
+	left: 30%;
+	font-family: 'Righteous', cursive;
+	font-size: 1.25vw;
+
+}
+.letraDuracionAscensor
+{
+  font-family: "Caveat", cursive;
+  font-size: 34px;
+  font-weight: 600;
+}
+.letraImagenAyudaMP
+{
+	position: relative;
+	text-align: center;
+	font-family:'Righteous', sans-serif;
+	font-weight: 400;
+}
+.letraSelects
+{
+  font-family: "Caveat", cursive;
+  font-size: 40px;
+  font-weight: 600;
+}
+.letraPartySelects
+{
+  font-family: 'Righteous', cursive;
+  font-size: 1.4vw;
+}
+.letraTemporizador
+{
+  font-family: 'Righteous';
+  font-size: 29px;
+}
+.letraTexto1
+{
+  font-family: 'Righteous';
+}
+.letraTiempo
+{
+  font-family: 'Righteous';
+  font-size: 3vw;
+}
+.letraTiempo2
+{
+  font-family: 'Righteous';
+  font-size: 2vw;
+  padding: 0px;
+}
+.letraVictoria
+{
+  position: absolute;
+  top: 4%;
+  width: 100%;
+  font-family: 'Pacifico';
+  font-size: 4.5vw;
+}
+.letraEquipoGanador
+{
+  position: absolute;
+  top: 20%;
+  width: 100%;
+  font-family: 'Pacifico';
+  font-size: 3.5vw;
+}
+.letraContinuarVictoria
+{
+  position: absolute;
+  bottom: 10%;
+  margin-left: 15%;
+  width: 70%;
+  font-family: 'Pacifico';
+  font-size: 2vw;
+}
+.letraVictoriaPartyEquipo2
+{
+  font-family: 'Pacifico';
+  font-size: 4.8vw;
+}
+.marginAutoTopBot
+{
+  margin-top: auto;
+  margin-bottom: auto;
+}
+.marginBotonMP
+{
+	margin: 2vh 0%;
+}
+.marginLeft1
+{
+  margin-left: -8vw;
+}
+.marginLeft2
+{
+  margin-left: 3vw;
+}
+.marginRight1
+{
+  margin-left: -1.5vw;
+}
+.marginTop1
+{
+  margin-top: 4%; 
+}
+.marginTop2
+{
+  margin-top: 2%; 
+}
+.margin3vw
+{
+  margin: 3vw 0px;
+}
+.margin25
+{
+  margin-top: 25px;
+}
+.margin40
+{
+  margin-top: 40px;
+}
+.margin80
+{
+  margin-top: 80px;
+}
+.marginVHEnorme
+{
+  margin-top: 12vh;
+}
+.marginVHGrande
+{
+  margin-top: 5vh;
+}
+.marginVHMedGra
+{
+  margin-top: 4vh;
+}
+.marginVHMedio
+{
+  margin-top: 3vh;
+}
+.marginVHPequenyo
+{
+  margin-top: 1vh;
+}
+.nombreEquipos
+{
+  width: 12vw;
+  font-family: 'Righteous', cursive;
+  font-size: 3.2vh;
+  font-weight: 600;
+}
+.overflow1
+{
+  overflow: hidden;
+  overflow-x: hidden;
+}
+.overflow2
+{
+  overflow: hidden;
+  overflow-y: hidden;
+}
+.padding1
+{
+  padding: 1% 0%;
+}
+.padding10
+{
+  padding: 10px 0px;
+}
+.paddingBot1
+{
+  padding-bottom: 15px;
+}
+.paddingLeyendaCasillas
+{
+  padding: 1.1vw 0px;
+}
+.paddingLeyendaFichas
+{
+  padding: 1.5vw 0px;
+}
+.paddingPartySelect
+{
+  padding: 15px 0px 0px 0px;
+}
+.paddingTop1
+{
+  padding-top: 4%;
+}
+.paddingTop10
+{
+  padding-top: 10px;
+}
+.paddingTopSolo10
+{
+  padding: 5px 0px 0px 0px;
+}
+.pantallaAyudaMP
+{
+  position: absolute;
+  width:60%;
+  height:60%;
+  top:24%;
+  left:20%;
+  background-image: radial-gradient(#e0efffe3 5%, #c8dff9 25%, #96adc6eb 110%);/*linear-gradient(360deg, #f6fcff7d -10%, #157f8414 50%, #ffffff8a 70%),*/ 
+  border-radius: 6vw;
+  border-style: groove;
+  border-width: 7px;
+  border-color: black;
+  z-index: 20;
+}
+.pantallaPreguntaEP
+{
+  position: absolute;
+  width:60%;
+  height:60%;
+  top:24%;
+  left:20%;
+  background-image: radial-gradient(#e3e3e3 5%, #dfd4f7f2 55%, #a08fcaf5 130%);/*linear-gradient(360deg, #f6fcff7d -10%, #157f8414 50%, #ffffff8a 70%),*/ 
+  border-radius: 6vw;
+  border-style: groove;
+  border-width: 7px;
+  border-color: black;
+  z-index: 20;
+}
+.pantallaNegro
+{
+  position: absolute;
+  height: 100%;
+  width: 100%;
+  background-image: radial-gradient(#d8d8d8eb 0%, #747474 100%);
+  z-index: 10;
+}
+.PantallaPuntuaciones
+{
+  height: 100%;
+  width: 100%;
+}
+.posAjusteBarrasVictoria
+{
+  position: relative;
+  top: calc(50% - 1.55vh);/*La mitad del tamaño del grosor de la barra interior.*/
+}
+.posCasillaJuegoParty
+{
+  background-color: red;
+  width: 12vw;
+  height: 8vw;
+}
+.posContadorYPause
+{
+  position: absolute;
+  right: 5%;
+  bottom: 13%;
+  width: 200px;
+  height: auto;
+  padding-top: 16px;
+  padding-bottom: 16px;
+  padding-left: 8px;
+  padding-right: 50px;
+  
+  background-image:radial-gradient(#d1d1d180 5%, #bea4f4ad 55%, #28008ecf 130%);
+  border-radius: 1.5vw;
+  border-style: groove;
+  border-width: 2px;
+  border-color: black;
+}
+.posEquipotexto
+{
+  position: absolute;
+  left: 42%;  
+  bottom: 8vh;
+}
+.posFichaE1{  position: absolute; top: 74%; left: 6.5%;   transform: translate(0px,0px);  animation:;}
+.posFichaE2{  position: absolute; top: 74%; left: 12.5%;  transform: translate(0px,0px);  animation:;}
+.posFichaE3{  position: absolute; top: 74%; left: 18.5%;  transform: translate(0px,0px);  animation:;}
+.posFichaE4{  position: absolute; top: 88%; left: 6.5%;   transform: translate(0px,0px);  animation:;}
+.posFichaE5{  position: absolute; top: 88%; left: 12.5%;  transform: translate(0px,0px);  animation:;}
+.posFichaE6{  position: absolute; top: 88%; left: 18.5%;  transform: translate(0px,0px);  animation:;}
+
+.posFinalizarEP
+{
+  position: absolute;
+  right: 5%;
+  top: 6%;
+  width: 10vw;
+  height: auto;
+  padding: 0.5vw 0px;
+}
+.posLetraAyuda
+{
+  position: absolute;
+  top: calc(2% + 9.5vh);
+  right: calc(3% + 4.5vh - 24px);
+}
+.posLetraLeyendaFichas
+{
+  position: relative;
+  margin-left: -5vw;
+  line-height: 2.7vw;
+  vertical-align: middle;
+}
+.posTiempoEP
+{
+  position: absolute;
+  right: 5%;
+  bottom: 26%;
+  width: 10vw;
+  height: auto;
+  padding: 1.1vw 0px;
+}
+.posTiraELDado
+{
+  position: relative;
+  width: 11vw;
+  left: calc(50% - 5.5vw);
+  margin: 0.5vw 0px 0px 0px;
+}
+.posHazClickenDado
+{
+  position: relative;
+  width: 9vw;
+  left: calc(50% - 4.5vw);
+  margin: 0px 0px 0.5vw 0px;
+}
+.posletraPiso1
+{
+  position: absolute;
+  left: 15%;
+  top: 83%;
+  font-family:'Righteous', sans-serif;
+  font-size: 25px;
+}
+.posletraPiso2
+{
+  position: absolute;
+  left: 15%;
+  top: 73%;
+  font-family:'Righteous', sans-serif;
+  font-size: 25px;
+}
+.posletraPiso3
+{
+  position: absolute;
+  left: 15%;
+  top: 63%;
+  font-family:'Righteous', sans-serif;
+  font-size: 25px;
+}
+.posletraPiso4
+{
+  position: absolute;
+  left: 15%;
+  top: 53%;
+  font-family:'Righteous', sans-serif;
+  font-size: 25px;
+}
+.posletraPiso5
+{
+  position: absolute;
+  left: 15%;
+  top: 43%;
+  font-family:'Righteous', sans-serif;
+  font-size: 25px;
+}
+.posletraPiso6
+{
+  position: absolute;
+  left: 15%;
+  top: 33%;
+  font-family:'Righteous', sans-serif;
+  font-size: 25px;
+}
+.PosLeyendaCasillas
+{
+  background-image: radial-gradient(#ff940000 5%, #ffa80000 35%, #ff7900 140%);
+  border-radius: 1vw;
+  border-style: groove;
+  border-width: 2px;
+  border-color: black;
+
+  position: absolute;
+  width:  20%;
+  height: auto;
+  top:  calc(50% - 18vw);   /*Lo mismo que el juego party*/
+  left: calc(50% + 27vw);
+}
+.PosLeyendaFichas
+{
+  background-image: radial-gradient(#ff940000 5%, #ffa80000 35%, #ff7900 140%);
+  border-radius: 1vw;
+  border-style: groove;
+  border-width: 2px;
+  border-color: black;
+
+  position: absolute;
+  width:  17%;
+  height: auto;
+  top:  calc(50% - 18vw);   /*Lo mismo que el juego party*/
+  left: 2%;
+}
+.PosJuegoParty
+{
+  background-image:  radial-gradient(#ffffff 15%, #ecdeff 100%);/*radial-gradient(#ffffff 0%, #00c6ff 100%);*/
+  border-radius: 1vw;
+  border-style: groove;
+  border-width: 2px;
+  border-color: black;
+
+  position: absolute;
+  width:  51vw;
+  height: 36vw;
+  top:  calc(50% - 18vw);
+  left: calc(50% - 28vw);
+}
+.PosMensExpl
+{
+  position: absolute;
+  width:  70%;
+  height: auto;
+  top:  90%;   /*Lo mismo que el juego party*/
+  left: 15%;
+}
+.PosTurnoYdado
+{
+  background-image: radial-gradient(#ff940000 5%, #ffa80000 35%, #ff7900 140%);
+  border-radius: 1vw;
+  border-style: groove;
+  border-width: 2px;
+  border-color: black;
+  
+  position: absolute;
+  width:  20%;
+  height: auto;
+  top:  calc(50% + 4vw);   /*Lo mismo que el juego party*/
+  left: calc(50% + 27vw);
+}
+.posicionImagenAdelante
+{
+  position: absolute;
+  top: 82.8%;
+  left: 9%;
+  width: auto;
+  height: 6vh;
+}
+.posicionImagenAscensor
+{
+  position: absolute;
+  bottom: 4vh;
+  left: calc(50% + 40.5vh);
+  width: auto;
+  height: 11vh;
+  z-index: 1;
+}
+.posicionImagenAyuda
+{
+  position: absolute;
+  top: 2%;
+  right: 3%;
+  width: auto;
+  height: 9.5vh;
+  z-index: 5;
+  cursor: pointer;
+}
+.posicionImagenEdificio
+{
+  position: absolute;
+  bottom: calc(0% - 17vh);
+  left: calc(50% - 45.5vh);
+  width: 91vh; /*43vw;*/
+  height: auto; /*ES UNA IMAGEN CUADRADA*/
+}
+.posicionImagenGrass
+{
+  position: absolute;
+  bottom: 0%;
+  left: 0%;
+  width: 100%;
+  height: 4vh;
+  z-index: 1;
+}
+.posicionImagenVolverMenu
+{
+  position: absolute;
+  top: 1.5%;
+  left: 3%;
+  width: 4.5vw;
+  height: auto;
+  z-index: 5;
+  cursor: pointer;
+}
+.posImagenVictoriaParty
+{
+  position: absolute;
+  left:30%; 
+  top:30%;
+}
+.posLetraVictoriaParty
+{
+  position: absolute;
+  left:40%; 
+  top:30%;
+}
+.posVictoriaBarras
+{
+  position: absolute;
+  top: 40%;
+}
+.row
+{
+	width: 100%;
+}
+.seleccionItemsQuiz
+{
+  height: auto;
+  background-image: radial-gradient(#b3d7ff94 5%, #b3d7ff 25%, #007bffb8 110%);/*linear-gradient(360deg, #f6fcff7d -10%, #157f8414 50%, #ffffff8a 70%),*/ 
+  border-radius: 6vw;
+  border-style: groove;
+  border-width: 4px;
+  border-color: black;
+}
+.seleccionItemsEP
+{
+  height: auto;
+  background-image: radial-gradient(#b3d7ff94 5%, #b3d7ff 25%, #007bffb8 110%);/*linear-gradient(360deg, #f6fcff7d -10%, #157f8414 50%, #ffffff8a 70%),*/ 
+  border-radius: 4vw;
+  border-style: groove;
+  border-width: 3px;
+  border-color: black;
+  padding: 0px 0px 20px 0px;
+}
+.sinpadding
+{
+  padding: 0px;
+}
+.sinmargin
+{
+  margin: 0px;
+}
+.tamanyoSelect
+{
+  width: 70px;
+}
+.tamanyoSelect2
+{
+  width: 188px;
+  font-size: 17px;
+}
+.tamanyoSelect3
+{
+  width: 100px;
+}
+.textoPantallaNegro1
+{
+  position: relative;
+  font-family: 'Pacifico', cursive;
+  font-size: 12.5vh;
+  font-style: white;
+  top: 13%;
+}
+.textoPantallaNegro2
+{
+  position: relative;
+  font-family: 'Pacifico', cursive;
+  font-size: 5.5vh;
+  font-style: white;
+  top: 50%;
+  width: 70%;
+  margin: 0px auto;
+}
+.textoPantallaNegro3
+{
+  position: relative;
+  font-family: 'Pacifico', cursive;
+  font-size: 8.5vh;
+  font-style: white;
+  top: 30%;
+  width: 70%;
+  margin: 0px auto;
+}
+.textoPantallaNegro4
+{
+  position: relative;
+  font-family: 'Pacifico', cursive;
+  font-size: 7.5vh;
+  font-style: white;
+  top: 10%;
+  width: 70%;
+  margin: 0px auto;
+}
+.textoPantallaNegro5
+{
+  position: relative;
+  font-family: 'Pacifico', cursive;
+  font-size: 6.5vh;
+  font-style: white;
+  top: 13%;
+  width: 70%;
+  margin: 0px auto;
+}
+.textoPantallaNegro6
+{
+  position: relative;
+  font-family: 'Pacifico', cursive;
+  font-size: 4.5vh;
+  font-style: white;
+  top: 30%;
+  width: 70%;
+  margin: 0px auto;
+}
+.textoPantallaNegro7
+{
+  position: relative;
+  font-family: 'Pacifico', cursive;
+  font-size: 3vw;
+  font-style: white;
+  top: 8%;
+  width: 70%;
+  margin: 0px auto;
+}
+.tiempoContador
+{
+  font-family: 'Pacifico', cursive;
+  font-size: 25px;
+}
+.TituloPartyGame
+{
+  font-size: 8vh;
+  font-family: 'Pacifico', cursive;
+  margin-top: 15px;
+  margin-left: -1vw;
+}
+.TituloQuiz
+{
+  font-size: 13vh;
+  font-family: 'Pacifico', cursive;
+}
+.underline {
+  text-decoration: underline;
+}
+.valorPuntuacion
+{
+  display: flex; 
+  font-family: 'Righteous';
+  font-size: 2.8vh;
+  margin: 0px;
+  text-align: left;
+  height: 100%;
+}
+.visibilityHidden
+{
+  visibility: hidden;
+}
+/*Código para la barra de progreso*/
+.progress {
+    padding: 6px;
+    background: rgba(0, 0, 0, 0.4);
+    border-radius: 4px;
+    height: 42px;
+}
+.progress-bar {
+    height: 30px;
+    border-radius: 4px;
+    background-image: linear-gradient(to bottom, rgba(255, 255, 255, 0.3), rgba(255, 255, 255, 0.05));
+    transition: 0.4s linear; /*Cambiar para ajustar el tiempo de transición*/
+    transition-property: width, background-color;
+    box-shadow: 0 0 1px 1px rgba(0, 0, 0, 0.25), inset 0 1px rgba(255, 255, 255, 0.1);
+}
+.progress > .progress-bar {   /*Para cambiar la longitud de la barra, solo hay que cambiar el width y el color. TRUCO CSS*/
+    width: 100%;
+    background-color: #86e01e;
+}
+
+/*Código para la barra de progreso 2!!!*/
+.progress2 {
+    padding: 1px;
+    background: #cfcfcf;
+    border-radius: 4px;
+    height: auto;
+    width: 100%;
+}
+.progress-bar2 {  
+    height: 3.1vh;
+    border-radius: 4px;
+    background-image: linear-gradient(to bottom, rgba(255, 255, 255, 0.3), rgba(255, 255, 255, 0.05));
+    transition: 0.8s linear; /*Cambiar para ajustar el tiempo de transición*/
+    transition-property: width, background-color;
+    box-shadow: 0 0 1px 1px rgba(0, 0, 0, 0.25), inset 0 1px rgba(255, 255, 255, 0.1);
+}
+.progress2 > .progress-bar2 {   /*Para cambiar la longitud de la barra, solo hay que cambiar el width y el color. TRUCO CSS*/
+    width: 1%;
+}
+
+.background1{    background-image: linear-gradient(#00beff 0%, #79ddff 90%, #00389a 100%);}
+.background2{    background-image: linear-gradient(#7cff00 30%, #b9ac12 90%, #0000006e 100%);}
+.background3{    background-image: linear-gradient(#ff4646 0%, #ff1a30 90%, #212529 100%);}
+.background4{    background-image: linear-gradient(#daff00 30%, #bfb219 90%, #0000006e 100%);}
+.background5{    background-image: linear-gradient(#f900ff 0%, #fc79ff 90%, #520a53 100%);}
+.background6{    background-image: linear-gradient(#58c798 30%, #1afb9c 90%, #0000006e 100%);}
+.background7{    background-image: linear-gradient(#ffb851 0%, #ff6d1a 90%, #00389a 100%);}
+.background8{    background-image: linear-gradient(#004085 0%, #2890b3 90%, #00389a 100%);}
+.background9{    background-image: linear-gradient(#ff5d9a 30%, #ff2563 90%, #0000006e 100%);}
+.background10{   background-image: linear-gradient(#4aff1a 30%, #19790c 90%, #0000009e 100%);}
+
+/*Código para los consejos*/
+.tooltip1 {
+  position: relative;
+  display: block;
+}
+
+.tooltip1 .tooltiptext1 {
+  visibility: hidden;
+  width: 60%;
+  background-color: white;
+  color: black;
+  text-align: center;
+  border-radius: 6px;
+  padding: 5px 0;
+  position: absolute;
+  z-index: 1;
+  bottom: 110%;
+  left: 20%;
+  border-style: groove;
+  border-color: black;
+  border-width: 2px
+  padding: 5px 10px;
+}
+
+.tooltip1 .tooltiptext1::after{
+  content: "";
+  position: absolute;
+  top: 100%;
+  left: 50%;
+  margin-left: -7px;
+  border-width: 7px;
+  border-style: solid;
+  border-color: black transparent transparent transparent;
+}
+
+.tooltip1:hover .tooltiptext1 {
+  visibility: visible;
+}
+
+.tooltip1 .tooltiptext2 {
+  visibility: visible;
+  width: 60%;
+  background-image: radial-gradient(#beddff94 5%, #c6e0fd 25%, #009bc7cf 110%);
+  color: black;
+  text-align: center;
+  border-radius: 6px;
+  padding: 5px 0;
+  position: absolute;
+  z-index: 1;
+  bottom: 110%;
+  left: 20%;
+  border-style: groove;
+  border-color: black;
+  border-width: 2px;
+}
+.tooltip1 .tooltiptext2::after{
+  content: "";
+  position: absolute;
+  top: 100%;
+  left: 50%;
+  margin-left: -7px;
+  border-width: 7px;
+  border-style: solid;
+  border-color: black transparent transparent transparent;
+}
+.tooltiptext3::after{
+  content: "";
+  position: absolute;
+  top: -16px;
+  left: 50%;
+  margin-left: -8px;
+  border-width: 8px;
+  border-style: solid;
+  border-color: transparent transparent black transparent;
+}
+
+/*Código para el checkbox*/
+.toggle{
+  --uiToggleSize: var(--toggleSize, 20px);
+  --uiToggleIndent: var(--toggleIndent, .4em);
+  --uiToggleBorderWidth: var(--toggleBorderWidth, 2px);
+  --uiToggleColor: var(--toggleColor, #000);
+  --uiToggleDisabledColor: var(--toggleDisabledColor, #868e96);
+  --uiToggleBgColor: var(--toggleBgColor, #fff);
+  --uiToggleArrowWidth: var(--toggleArrowWidth, 2px);
+  --uiToggleArrowColor: var(--toggleArrowColor, #fff);
+
+  display: inline-block;
+  position: relative;
+  margin: 0px 0px 0.4vw 0px;
+}
+
+.toggle__input{
+  position: absolute;
+  left: -99999px;
+}
+
+.toggle__label{
+  display: inline-flex;
+  cursor: pointer;
+  min-height: var(--uiToggleSize);
+  padding-left: calc(var(--uiToggleSize) + var(--uiToggleIndent));
+}
+
+.toggle__label:before, .toggle__label:after{
+  content: "";
+  box-sizing: border-box;  
+  width: 1em;
+  height: 1em;
+  font-size: var(--uiToggleSize);
+
+  position: absolute;
+  left: -1vw;
+  top: 0.5vw;
+}
+
+.toggle__label:before{
+  border: var(--uiToggleBorderWidth) solid var(--uiToggleColor);
+  z-index: 2;
+}
+
+.toggle__input:disabled ~ .toggle__label:before{
+  border-color: var(--uiToggleDisabledColor);
+}
+
+.toggle__input:focus ~ .toggle__label:before{
+  box-shadow: 0 0 0 2px var(--uiToggleBgColor), 0 0 0px 4px var(--uiToggleColor);
+}
+
+.toggle__input:not(:disabled):checked:focus ~ .toggle__label:after{
+  box-shadow: 0 0 0 2px var(--uiToggleBgColor), 0 0 0px 4px var(--uiToggleColor);
+}
+
+.toggle__input:not(:disabled) ~ .toggle__label:after{
+  background-color: var(--uiToggleColor);
+  opacity: 0;
+}
+
+.toggle__input:not(:disabled):checked ~ .toggle__label:after{
+  opacity: 1;
+}
+
+.toggle__text{
+  margin-top: auto;
+  margin-bottom: auto;
+}
+/*
+The arrow size and position depends from sizes of square because I needed an arrow correct positioning from the top left corner of the element toggle
+*/
+.toggle__text:before{
+  content: "";
+  box-sizing: border-box;
+  width: 0;
+  height: 0;
+  font-size: var(--uiToggleSize);
+
+  border-left-width: 0;
+  border-bottom-width: 0;
+  border-left-style: solid;
+  border-bottom-style: solid;
+  border-color: var(--uiToggleArrowColor);
+
+  position: absolute;
+  top: calc(.5428em + 0.5vw);
+  left: calc(.2em - 1vw);
+  z-index: 3;
+
+  transform-origin: left top;
+  transform: rotate(-40deg) skew(10deg);
+}
+
+.toggle__input:not(:disabled):checked ~ .toggle__label .toggle__text:before{
+  width: .5em;
+  height: .25em;
+  border-left-width: var(--uiToggleArrowWidth);
+  border-bottom-width: var(--uiToggleArrowWidth);
+  will-change: width, height;
+  transition: width .1s ease-out .2s, height .2s ease-out;
+}
+/*
+=====
+LEVEL 2. PRESENTATION STYLES
+=====
+*/ 
+/*The demo skin*/
+.toggle__label:before, .toggle__label:after{
+  border-radius: 2px;
+}
+/*The animation of switching states*/
+.toggle__input:not(:disabled) ~ .toggle__label:before,
+.toggle__input:not(:disabled) ~ .toggle__label:after{
+  opacity: 1;
+  transform-origin: center center;
+  will-change: transform;
+  transition: transform .2s ease-out;
+}
+
+.toggle__input:not(:disabled) ~ .toggle__label:before{
+  transform: rotateY(0deg);
+  transition-delay: .2s;
+}
+
+.toggle__input:not(:disabled) ~ .toggle__label:after{
+  transform: rotateY(90deg);
+}
+
+.toggle__input:not(:disabled):checked ~ .toggle__label:before{
+  transform: rotateY(-90deg);
+  transition-delay: 0s;
+}
+
+.toggle__input:not(:disabled):checked ~ .toggle__label:after{
+  transform: rotateY(0deg);
+  transition-delay: .2s;
+}
+
+.toggle__text:before{
+  opacity: 0;
+}
+
+.toggle__input:not(:disabled):checked ~ .toggle__label .toggle__text:before{
+  opacity: 1;
+  transition: opacity .1s ease-out .3s, width .1s ease-out .5s, height .2s ease-out .3s;
+}
+/*LEVEL 3. SETTINGS*/
+.toggle{
+  --toggleColor: #4b70a2;
+  --toggleBgColor: "black";
+  --toggleSize: 21px;
+}
+/*Fin de los checkbox*/
+
+/*MEDIAAAAAAAAAAAA QUERIEEEEEEEEEEEEES*/
+
+/*Extra small devices (portrait phones, less than 576px)*/
+@media (max-width: 575.98px) 
+{ 
+  select
+  {
+    font-size: 0.7rem !important;
+  }
+  .letraDuracionAscensor
+  {
+    font-size: 20px;
+  } 
+  .letraSelects
+  {
+    font-size: 29px;
+  }
+  .fondoEquipos
+  {
+    margin-left: 7vw;
+  }
+}
+
+/*Small devices (landscape phones, 576px and up)*/
+@media (min-width: 576px) and (max-width: 767.98px) 
+{ 
+  select
+  {
+    font-size: 0.7rem !important;
+  }	
+  .letraDuracionAscensor
+  {
+    font-size: 20px;
+  }
+  .letraSelects
+  {
+    font-size: 29px;
+  }
+  .fondoEquipos
+  {
+    margin-left: 7vw;
+  }
+}
+
+/*Medium devices (tablets, 768px and up)*/
+@media (min-width: 768px) and (max-width: 991.98px) 
+{	
+  select
+  {
+    font-size: 0.7rem !important;
+  }
+  .letraDuracionAscensor
+  {
+    font-size: 27px;
+  }
+  .letraSelects
+  {
+    font-size: 29px;
+  }
+  .fondoEquipos
+  {
+    margin-left: 7vw;
+  }
+}
+
+/*Large devices (desktops, 992px and up)*/
+@media (min-width: 992px) and (max-width: 1199.98px) 
+{ 
+  select
+  {
+    font-size: 0.8rem !important;
+  }
+}
+
+/*Extra large devices (large desktops, 1200px and up)*/
+@media (min-width: 1200px)  and (max-width: 1799.98px)
+{ 	
+  select
+  {
+    font-size: 0.9rem !important;
+  }
+}
+
+@media (min-width: 1800px)
+{   
+  select
+  {
+    font-size: 0.9rem !important;
+  }
+  .toggle
+  {
+    --toggleSize: 25px;
+  }
+}
+
+/*Gracias Daniel Eden xD; https://daneden.github.io/animate.css/ */
