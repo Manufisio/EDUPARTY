@@ -1,21 +1,21 @@
 // ─── TABLA DE POSICIONES ABSOLUTAS DEL TABLERO ───────────────────────────────
 var tableroPos = {
-  0:  { top: 74,   left: 7.5  },
-  1:  { top: 74,   left: 18.9 },
-  2:  { top: 74,   left: 30.3 },
-  3:  { top: 74,   left: 41.7 },
-  4:  { top: 62.6, left: 41.7 },
-  5:  { top: 62.6, left: 30.3 },
-  6:  { top: 62.6, left: 18.9 },
-  7:  { top: 62.6, left: 7.5  },
-  8:  { top: 51.2, left: 7.5  },
-  9:  { top: 51.2, left: 18.9 },
-  10: { top: 51.2, left: 30.3 },
-  11: { top: 51.2, left: 41.7 },
-  12: { top: 39.8, left: 41.7 },
-  13: { top: 39.8, left: 30.3 },
-  14: { top: 39.8, left: 18.9 },
-  15: { top: 39.8, left: 7.5  },
+  0:  { top: 77,   left: 5.5  },  // Start
+  1:  { top: 77,   left: 27.7 },
+  2:  { top: 77,   left: 50   },
+  3:  { top: 77,   left: 72.3 },
+  4:  { top: 55,   left: 72.3 },
+  5:  { top: 55,   left: 50   },
+  6:  { top: 55,   left: 27.7 },
+  7:  { top: 55,   left: 5.5  },
+  8:  { top: 32.8, left: 5.5  },
+  9:  { top: 32.8, left: 27.7 },
+  10: { top: 32.8, left: 50   },
+  11: { top: 32.8, left: 72.3 },
+  12: { top: 10.7, left: 72.3 },
+  13: { top: 10.7, left: 50   },
+  14: { top: 10.7, left: 27.7 },
+  15: { top: 10.7, left: 5.5  },  // End
 };
 
 function moverFichaA(numEquipo, casilla, duracion, callback) {
