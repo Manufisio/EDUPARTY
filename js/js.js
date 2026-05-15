@@ -1,3 +1,53 @@
+// ─── TABLA DE POSICIONES ABSOLUTAS DEL TABLERO ───────────────────────────────
+var tableroPos = {
+  0:  { top: 74,   left: 7.5  },
+  1:  { top: 74,   left: 18.9 },
+  2:  { top: 74,   left: 30.3 },
+  3:  { top: 74,   left: 41.7 },
+  4:  { top: 62.6, left: 41.7 },
+  5:  { top: 62.6, left: 30.3 },
+  6:  { top: 62.6, left: 18.9 },
+  7:  { top: 62.6, left: 7.5  },
+  8:  { top: 51.2, left: 7.5  },
+  9:  { top: 51.2, left: 18.9 },
+  10: { top: 51.2, left: 30.3 },
+  11: { top: 51.2, left: 41.7 },
+  12: { top: 39.8, left: 41.7 },
+  13: { top: 39.8, left: 30.3 },
+  14: { top: 39.8, left: 18.9 },
+  15: { top: 39.8, left: 7.5  },
+};
+
+function moverFichaA(numEquipo, casilla, duracion, callback) {
+  var pos = tableroPos[casilla];
+  if (!pos) { if(callback) callback(); return; }
+  $("#FichaEquipo" + numEquipo).animate(
+    { top: pos.top + '%', left: pos.left + '%' },
+    { duration: duracion || 600, easing: "swing", complete: callback || function(){} }
+  );
+}
+
+function moverFichasPasoAPaso(totalPasos, pasoActual) {
+  if (pasoActual >= totalPasos) {
+    setTimeout(function(){ partyElegirPrueba(); }, 300);
+    return;
+  }
+  posicionEquiposParty[turnoEquipo]++;
+  if (posicionEquiposParty[turnoEquipo] > 14) {
+    moverFichaA(turnoEquipo + 1, 15, 500, function(){
+      setTimeout(function(){ FinalizarJuego("Party"); }, 1000);
+    });
+    return;
+  }
+  moverFichaA(turnoEquipo + 1, posicionEquiposParty[turnoEquipo], 500, function() {
+    setTimeout(function(){
+      moverFichasPasoAPaso(totalPasos, pasoActual + 1);
+    }, 100);
+  });
+}
+
+
+
 //Variables paralos distintos juegos:
 
 //Variables de estado
@@ -1490,72 +1540,17 @@ function PartyGame()
   $("#TurnoEquipoParty").text("Equipo "+(turnoEquipo+1)+" ~ ("+(RondaEquipo)+"/3)");  
 }
 
-function TurnoParty()
-{
+function TurnoParty() {
   var numDadoSacado = 0;
-  var contador = 0;
-  var posLeft = 0;
-  var posTop = 0;
 
-  //Deshabilitar click
   $("#ImagenClickDado").attr('onClick', null);
- 
-  //Mover dado y que salga num al azar 1-6.
-  numDadoSacado = random(6)+1;
-  contador = numDadoSacado;
+  numDadoSacado = random(6) + 1;
+  $("#HazClickDado").css("display", "none");
+  animarDado(numDadoSacado);
 
-  $("#HazClickDado").css("display","none");
-  //Animacion dedados cambiando!!!!
-  animarDado(numDadoSacado); //TIENE UNA DURACION DE 2.6 SEGUNDOS.
-  //Mover ficha correspondiente.  
-  //No se me ha ocurrido otra forma mejor de hacerlo, establezco varios setTimeOuts (el num del dado). Para que sea lineal el movimiento cada segundo.
-  //Miro en cada set time out la posicion en la que se encuentra la ficha (posicionEquiposParty[turnoEquipo]) y valoro si ha de moverse arriba abajo derecha izquierda. 
-  //El uso de snakes y escaleras se hará aparte.
-  //Le he puesto un SetTimeOut para que se ajuste a la funcion animardado(). Lo he puesto fuera del for, porque no me apetecia cambiar todo el interior.
-  setTimeout(function(){
-    for(i=0; i<numDadoSacado; i++)
-    {
-        setTimeout( function(){
-            posicionEquiposParty[turnoEquipo]++;
-
-            if(posicionEquiposParty[turnoEquipo]>15)
-                return false;
-
-            posLeft = $("#FichaEquipo" + (turnoEquipo+1)).css('left');
-            posTop = $("#FichaEquipo" + (turnoEquipo+1)).css('top');
-            //valorar que posicion ir(); 
-            if((posicionEquiposParty[turnoEquipo]>0 && posicionEquiposParty[turnoEquipo]<4) || (posicionEquiposParty[turnoEquipo]>8 && posicionEquiposParty[turnoEquipo]<12))
-            {
-                $("#FichaEquipo" + (turnoEquipo+1)).animate({left: '+=11.42vw'});
-                //$("#FichaEquipo" + (turnoEquipo+1)).css("left", "calc(" + posLeft + " + 18%)"); //Cuando va pa la derecha
-            }
-            else if((posicionEquiposParty[turnoEquipo]>4 && posicionEquiposParty[turnoEquipo]<8) || (posicionEquiposParty[turnoEquipo]>12 && posicionEquiposParty[turnoEquipo]<15))
-            {
-                $("#FichaEquipo" + (turnoEquipo+1)).animate({left: '-=11.42vw'});
-                //$("#FichaEquipo" + (turnoEquipo+1)).css("left","calc(" + posLeft + " - 18%)"); //Cuando va pa la izquierda
-            }
-            else if(posicionEquiposParty[turnoEquipo]==4 || posicionEquiposParty[turnoEquipo]==8 || posicionEquiposParty[turnoEquipo]==12)
-            {
-                $("#FichaEquipo" + (turnoEquipo+1)).animate({top: '-=8.1vw'});
-                //$("#FichaEquipo" + (turnoEquipo+1)).css("top","calc(" + posTop + " - 22.5%)"); //Cuando sube pa arriba
-            }
-            else if(posicionEquiposParty[turnoEquipo]>14)
-            {
-                $("#FichaEquipo" + (turnoEquipo+1)).animate({left: '-=11.42vw'});
-                setTimeout( function(){FinalizarJuego("Party");},1500);
-                return false;
-            }
-        },i*1000+500);
-        if(i==(numDadoSacado-1)) //Para que solo se ejecute una vez.
-        {
-            setTimeout( function(){
-                partyElegirPrueba();
-                //Llamar funcion para Escoger prueba, que lleve a la prueba, se ejecute y muestre la venta de continuar o perder turno.
-                //Volver al juego con siguiente turno
-            },i*1000+500);
-        }
-    }
-  },2800);
+  setTimeout(function() {
+    moverFichasPasoAPaso(numDadoSacado, 0);
+  }, 2800);
 }
 
 function partyElegirPrueba()
@@ -1741,41 +1736,30 @@ function SiguienteEquipo()
       turnoEquipo=0;
   PartyGame();
 }
-function BajarSnake()
-{
-  if(posicionEquiposParty[turnoEquipo]==6)
-  {
-    //Mover al 2.
-    $("#FichaEquipo" + (turnoEquipo+1)).animate({top: '+=8.1vw', left: '+=11.42vw'});
+function BajarSnake() {
+  if (posicionEquiposParty[turnoEquipo] == 6) {
     posicionEquiposParty[turnoEquipo] = 2;
-    setTimeout( function(){ partyElegirPrueba();},1200);
-  }
-  else if(posicionEquiposParty[turnoEquipo]==13)
-  {
-    //Mover al 9.
-    $("#FichaEquipo" + (turnoEquipo+1)).animate({top: '+=8.1vw', left: '-=11.42vw'});
+    moverFichaA(turnoEquipo + 1, 2, 800, function() {
+      setTimeout(function(){ partyElegirPrueba(); }, 400);
+    });
+  } else if (posicionEquiposParty[turnoEquipo] == 13) {
     posicionEquiposParty[turnoEquipo] = 9;
-    setTimeout( function(){ partyElegirPrueba();},1200);
+    moverFichaA(turnoEquipo + 1, 9, 800, function() {
+      setTimeout(function(){ partyElegirPrueba(); }, 400);
+    });
   }
-  //console.log("Subiendo y bajaaando");
 }
-function subirEscalera()
-{
-  if(posicionEquiposParty[turnoEquipo]==7)
-  {
-    //Mover al 9.
+function subirEscalera() {
+  if (posicionEquiposParty[turnoEquipo] == 7) {
+    posicionEquiposParty[turnoEquipo] = 9;
     setTimeout(function(){
-      $("#FichaEquipo" + (turnoEquipo+1)).animate({top: '-=8.1vw', left: '+=11.42vw'});
-      posicionEquiposParty[turnoEquipo] = 9;
-    },1300);
-  }
-  else if(posicionEquiposParty[turnoEquipo]==10)
-  {
-    //Mover al 12.
+      moverFichaA(turnoEquipo + 1, 9, 800);
+    }, 1300);
+  } else if (posicionEquiposParty[turnoEquipo] == 10) {
+    posicionEquiposParty[turnoEquipo] = 12;
     setTimeout(function(){
-      $("#FichaEquipo" + (turnoEquipo+1)).animate({top: '-=8.1vw', left: '+=11.42vw'});
-      posicionEquiposParty[turnoEquipo] = 12;
-    },1300);
+      moverFichaA(turnoEquipo + 1, 12, 800);
+    }, 1300);
   }
 }
 
