@@ -1,30 +1,25 @@
 // ─── TABLA DE POSICIONES ABSOLUTAS DEL TABLERO ───────────────────────────────
-var tableroPos = {
-  0:  { top: 77,   left: 5.5  },  // Start
-  1:  { top: 77,   left: 27.7 },
-  2:  { top: 77,   left: 50   },
-  3:  { top: 77,   left: 72.3 },
-  4:  { top: 55,   left: 72.3 },
-  5:  { top: 55,   left: 50   },
-  6:  { top: 55,   left: 27.7 },
-  7:  { top: 55,   left: 5.5  },
-  8:  { top: 32.8, left: 5.5  },
-  9:  { top: 32.8, left: 27.7 },
-  10: { top: 32.8, left: 50   },
-  11: { top: 32.8, left: 72.3 },
-  12: { top: 10.7, left: 72.3 },
-  13: { top: 10.7, left: 50   },
-  14: { top: 10.7, left: 27.7 },
-  15: { top: 10.7, left: 5.5  },  // End
-};
+// Calcula el movimiento relativo para cada paso del dado
+function calcularMovimiento(posicion) {
+  if((posicion>0 && posicion<4) || (posicion>8 && posicion<12))
+    return {left: '+=11.42vw', top: '+=0'};
+  else if((posicion>4 && posicion<8) || (posicion>12 && posicion<15))
+    return {left: '-=11.42vw', top: '+=0'};
+  else if(posicion==4 || posicion==8 || posicion==12)
+    return {left: '+=0', top: '-=8.1vw'};
+  else if(posicion>14)
+    return {left: '-=11.42vw', top: '+=0'};
+  return null;
+}
 
-function moverFichaA(numEquipo, casilla, duracion, callback) {
-  var pos = tableroPos[casilla];
-  if (!pos) { if(callback) callback(); return; }
-  $("#FichaEquipo" + numEquipo).animate(
-    { top: pos.top + '%', left: pos.left + '%' },
-    { duration: duracion || 600, easing: "swing", complete: callback || function(){} }
-  );
+function moverFichaA(numEquipo, destino, duracion, callback) {
+  var mov = calcularMovimiento(destino);
+  if(!mov) { if(callback) callback(); return; }
+  $("#FichaEquipo" + numEquipo).animate(mov, {
+    duration: duracion || 500,
+    easing: "swing",
+    complete: callback || function(){}
+  });
 }
 
 function moverFichasPasoAPaso(totalPasos, pasoActual) {
