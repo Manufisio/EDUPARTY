@@ -1230,9 +1230,9 @@ table tr:last-child td:last-child {
 {
   position: absolute;
   bottom: 4vh;
-  left: calc(50% + 40.5vh);
+  left: calc(50% + 22vh);
   width: auto;
-  height: 11vh;
+  height: 20vh;
   z-index: 1;
 }
 .posicionImagenAyuda
@@ -1248,10 +1248,10 @@ table tr:last-child td:last-child {
 .posicionImagenEdificio
 {
   position: absolute;
-  bottom: calc(0% - 17vh);
-  left: calc(50% - 45.5vh);
-  width: 91vh; /*43vw;*/
-  height: auto; /*ES UNA IMAGEN CUADRADA*/
+  bottom: 4vh;
+  left: calc(50% - 22vh);
+  width: 44vh;
+  height: auto;
 }
 .posicionImagenGrass
 {
@@ -1259,7 +1259,7 @@ table tr:last-child td:last-child {
   bottom: 0%;
   left: 0%;
   width: 100%;
-  height: 4vh;
+  height: 8vh;
   z-index: 1;
 }
 .posicionImagenVolverMenu
@@ -1810,6 +1810,16 @@ LEVEL 2. PRESENTATION STYLES
   {
     --toggleSize: 25px;
   }
+	.posicionImagenFondoEP
+{
+  position: absolute;
+  top: 0%;
+  left: 0%;
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  z-index: 0;
+}
 }
 
 /*Gracias Daniel Eden xD; https://daneden.github.io/animate.css/ */
